@@ -69,11 +69,10 @@
         </div>
         <!-- /ko -->
         <div class="section-divider"></div>
-        <br />
-        <div id="CreditCardInputContainer"></div>
+        <br />        
         <br /><div id="validation_summary" class="error"></div><br />
-        <a id="SubmitButton" class="submitButton" data-bind="click: onSubmitClicked">@Resources.PlaceOrderCaption</a>
-        <a id="SubmitButton" class="submitButton" data-bind="click: onCancelClicked">@Resources.Cancel</a>        
+        <a id="SubmitButton" class="submitButton" data-bind="click: onFormPostClicked">@Resources.PlaceOrderCaption</a>
+        <a id="SubmitButton" class="submitButton" data-bind="click: onCancelClicked">@Resources.Cancel</a>                
     </form>    
     <script>
         $("#Form").validate({
@@ -87,9 +86,6 @@
             rules: {
             },
             messages: {
-                CardCvn: {
-                    digits: "@Resources.CvnValidationMessage"
-                },
             },
             submitHandler: function (form) {
 

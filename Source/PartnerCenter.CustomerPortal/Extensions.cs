@@ -41,7 +41,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal
         {
             if (string.IsNullOrWhiteSpace(nonEmptyString))
             {
-                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "{0} is not set", caption ?? "string"));
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.AssertStringNotEmptyInvalidError, caption ?? Resources.AssertStringNotEmptyInvalidPrefix)); 
             }
         }
 
@@ -60,7 +60,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal
 
             if (!regexPhoneNumber.IsMatch(phoneNumber))
             {
-                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "{0} is invalid.", caption ?? "string"));
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.AssertPhoneNumberInvalidError, caption ?? Resources.AssertPhoneNumberInvalidPrefix));
             }
         }
 
@@ -73,7 +73,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal
         {
             if (number <= 0)
             {
-                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "{0} must be greater than zero", caption ?? "number"));
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.AssertNumberPositiveInvalidError, caption ?? Resources.AssertNumberPositiveInvalidPrefix)); 
             }
         }
 
@@ -86,7 +86,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal
         {
             if (number <= 0)
             {
-                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "{0} must be greater than zero", caption ?? "number"));
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.AssertNumberPositiveInvalidError, caption ?? Resources.AssertNumberPositiveInvalidPrefix));                
             }
         }
 

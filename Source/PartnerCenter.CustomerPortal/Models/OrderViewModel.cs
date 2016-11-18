@@ -21,14 +21,14 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
         public IEnumerable<OrderSubscriptionItemViewModel> Subscriptions { get; set; }
 
         /// <summary>
-        /// Gets or sets the Credit Card for this order.
-        /// </summary>        
-        [Required]
-        public PaymentCard CreditCard { get; set; }
-
-        /// <summary>
         /// Gets or sets the Customer Id. 
         /// </summary>
         public string CustomerId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Operation Type for the order. 
+        /// </summary>
+        [Required]
+        public CommerceOperationType OperationType { get; set; }
     }
 }

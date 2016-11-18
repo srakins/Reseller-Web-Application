@@ -17,11 +17,10 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionResult"/> class.
-        /// </summary>
-        /// <param name="amountCharged">The total amount charged for the transaction.</param>
+        /// </summary>        
         /// <param name="lineItems">A collection of line items bundled in the transaction.</param>
         /// <param name="timeStamp">The time at which the transaction took place.</param>
-        public TransactionResult(decimal amountCharged, IEnumerable<TransactionResultLineItem> lineItems, DateTime timeStamp)
+        public TransactionResult(IEnumerable<TransactionResultLineItem> lineItems, DateTime timeStamp)
         {
             // we don't validate amount charged since a transaction may result in a negative amount
             if (lineItems == null || lineItems.Count() <= 0)
@@ -33,16 +32,10 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
             {
                 lineItem.AssertNotNull("lineItems has an empty entry");
             }
-
-            this.AmountCharged = amountCharged;
+            
             this.LineItems = lineItems;
             this.TimeStamp = timeStamp;
         }
-
-        /// <summary>
-        /// Gets the total amount charged for the transaction.
-        /// </summary>
-        public decimal AmountCharged { get; private set; }
 
         /// <summary>
         /// Gets the result line items associated with the transaction.

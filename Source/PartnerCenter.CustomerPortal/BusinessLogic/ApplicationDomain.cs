@@ -119,11 +119,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic
         private static async Task<IAggregatePartner> AcquirePartnerCenterAccessAsync()
         {
             PartnerService.Instance.ApiRootUrl = ConfigurationManager.AppSettings["partnerCenter.apiEndPoint"];
-            PartnerService.Instance.ApplicationName = "Web Store Front V1.0";
+            PartnerService.Instance.ApplicationName = "Web Store Front V1.5";
 
             var credentials = await PartnerCredentials.Instance.GenerateByApplicationCredentialsAsync(
                 ConfigurationManager.AppSettings["partnercenter.applicationId"],
-                ConfigurationManager.AppSettings["partnercenter.applicationSecret"],
+                ConfigurationManager.AppSettings["partnercenter.applicationSecret"],                
                 ConfigurationManager.AppSettings["partnercenter.AadTenantId"],
                 ConfigurationManager.AppSettings["aadEndpoint"],
                 ConfigurationManager.AppSettings["aadGraphEndpoint"]);

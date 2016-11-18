@@ -47,10 +47,22 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
 
                 foreach (var offer in partnerOffers)
                 {
-                    offer.Thumbnail = microsoftOffers.Where(msOffer => msOffer.Offer.Id == offer.MicrosoftOfferId).First().ThumbnailUri;
+                    // TODO :: Handle Microsoft offer being pulled back due to EOL. 
+                    var microsoftOfferItem = microsoftOffers.Where(msOffer => msOffer.Offer.Id == offer.MicrosoftOfferId).FirstOrDefault();
+
+                    // temporarily remove the partner offer from catalog display if the corresponding Microsoft offer does not exist. 
+                    if (microsoftOfferItem != null)
+                    {
+                        offer.Thumbnail = microsoftOfferItem.ThumbnailUri;
+                    }                    
+                    else
+                    {
+                        // temporary fix - remove the items from the collection by marking it as Inactive.
+                        offer.IsInactive = true;
+                    }
                 }
 
-                offerCatalogViewModel.Offers = partnerOffers;
+                offerCatalogViewModel.Offers = partnerOffers.Where(offer => offer.IsInactive == false);
             }
 
             return offerCatalogViewModel;

@@ -72,7 +72,7 @@ Microsoft.WebPortal.SubscriptionsPresenter.prototype.onRender = function () {
 
     var getSubscriptionsSummary = function () {
         var getSubscriptionSummaryServerCall = self.webPortal.ServerCallManager.create(
-            self.feature, self.webPortal.Helpers.ajaxCall("api/Subscription/summary", Microsoft.WebPortal.HttpMethod.Get), "GetSubscriptionSummary");
+            self.feature, self.webPortal.Helpers.ajaxCall("api/Order/summary", Microsoft.WebPortal.HttpMethod.Get), "GetSubscriptionSummary");
 
         self.viewModel.IsSet(false);
         self.viewModel.ShowProgress(true);

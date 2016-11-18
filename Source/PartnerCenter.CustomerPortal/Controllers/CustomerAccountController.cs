@@ -80,8 +80,10 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
             }
 
             Customer newCustomer = null;
-            string domainName = string.Format(CultureInfo.InvariantCulture, "{0}.onmicrosoft.com", customerViewModel.DomainPrefix);
             
+            // TODO :: Loc. may need special handling for national clouds deployments.
+            string domainName = string.Format(CultureInfo.InvariantCulture, "{0}.onmicrosoft.com", customerViewModel.DomainPrefix);  
+
             // check domain available.
             bool isDomainTaken = await ApplicationDomain.Instance.PartnerCenterClient.Domains.ByDomain(domainName).ExistsAsync();
             if (isDomainTaken)

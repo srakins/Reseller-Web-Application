@@ -25,5 +25,10 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
         /// Gets or sets the payment account type.
         /// </summary>
         public string AccountType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Web Experience Profile Id.
+        /// </summary>
+        public string WebExperienceProfileId { get; set; }
     }
 }

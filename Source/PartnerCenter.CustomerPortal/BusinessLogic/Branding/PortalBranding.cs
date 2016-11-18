@@ -115,7 +115,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic
 
             if (brandingConfiguration.ContactUs == null)
             {
-                throw new PartnerDomainException(ErrorCode.InvalidInput, "ContactUs section not found in portal branding configuration").AddDetail("Field", "ContactUs");
+                throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.ContactUsSectionNotFound).AddDetail("Field", "ContactUs");
             }
 
             brandingConfiguration.ContactUs.Email.AssertNotEmpty("Email");
@@ -126,7 +126,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic
             }
             catch (FormatException)
             {
-                throw new PartnerDomainException(ErrorCode.InvalidInput, "Invalid contact us email address").AddDetail("Field", "ContactUs.Email");
+                throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.InvalidContactUsEmailAddress).AddDetail("Field", "ContactUs.Email");
             }
             
             try
@@ -135,7 +135,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic
             }
             catch (ArgumentException)
             {
-                throw new PartnerDomainException(ErrorCode.InvalidInput, "Invalid contact us phone").AddDetail("Field", "ContactUs.Phone");
+                throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.InvalidContactUsPhoneExceptionMessage).AddDetail("Field", "ContactUs.Phone");
             }
             
             if (brandingConfiguration.ContactSales == null)
@@ -161,7 +161,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic
                     }
                     catch (FormatException)
                     {
-                        throw new PartnerDomainException(ErrorCode.InvalidInput, "Invalid contact sales email address").AddDetail("Field", "ContactSales.Email");
+                        throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.InvalidContactSalesEmailAddress).AddDetail("Field", "ContactSales.Email");
                     }
                 }
 
@@ -177,7 +177,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic
                     }
                     catch (ArgumentException)
                     {
-                        throw new PartnerDomainException(ErrorCode.InvalidInput, "Invalid contact sales phone").AddDetail("Field", "ContactSales.Phone");
+                        throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.InvalidContactSalesPhoneExceptionMessage).AddDetail("Field", "ContactSales.Phone");
                     }
                 }
             }

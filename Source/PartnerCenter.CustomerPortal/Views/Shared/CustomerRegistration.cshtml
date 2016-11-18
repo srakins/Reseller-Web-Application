@@ -4,8 +4,7 @@
     <form id="Form">
         <!-- ko stopBinding: true -->        
         <div id="AddSubscriptionsViewContainer"></div>
-        <div id="CustomerProfileContainer"></div>
-        <div id="CreditCardInputContainer"></div>
+        <div id="CustomerProfileContainer"></div>        
         <!-- /ko -->
         <div class="row">
             <input id="Consent" name="Consent" type="checkbox"><label for="Consent" id="ConsentContainer">@Resources.AcceptTerms</label>
@@ -48,9 +47,6 @@
                 }
             },
             messages: {
-                CardCvn: {
-                    digits: "@Resources.CvnValidationMessage"
-                },
                 consent: {
                     required: "@Resources.AcceptTermsValidationMessage"
                 }

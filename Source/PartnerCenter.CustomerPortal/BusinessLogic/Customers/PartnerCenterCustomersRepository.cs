@@ -44,8 +44,8 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Customers
             if (!string.IsNullOrWhiteSpace(existingCustomerId))
             {
                 throw new InvalidOperationException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    "{0} AD tenant is already registered to Partner Center customer: {1}",
+                    CultureInfo.InvariantCulture,  
+                    Resources.ADTenantIsAlreadyRegisteredToCustomer, 
                     tenantId,
                     existingCustomerId));
             }

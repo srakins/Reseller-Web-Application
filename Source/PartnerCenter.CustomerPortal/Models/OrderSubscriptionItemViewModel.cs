@@ -6,6 +6,7 @@
 
 namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -19,13 +20,33 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
         public string OfferId { get; set; }
 
         /// <summary>
-        /// Gets or sets the subscription Id (used primarily during update calls). 
+        /// Gets or sets the subscription Id. 
         /// </summary>
         public string SubscriptionId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the partner offer Id. 
+        /// </summary>
+        public string PartnerOfferId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the subscription name of the offer being ordered. 
+        /// </summary>
+        public string SubscriptionName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the subscription expiry date of the offer being ordered. 
+        /// </summary>
+        public DateTime SubscriptionExpiryDate { get; set; }
 
         /// <summary>
         /// Gets or sets the quantity of the offer being ordered.
         /// </summary>                
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the price of the offer being ordered.
+        /// </summary>
+        public decimal SeatPrice { get; set; }
     }
 }

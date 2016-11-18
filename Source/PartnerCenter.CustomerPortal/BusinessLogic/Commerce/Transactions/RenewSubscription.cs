@@ -67,8 +67,8 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Tr
             catch (PartnerException subscriptionUpdateProblem)
             {
                 string exceptionMessage = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "RenewSubscription.ExecuteAsync() Failed: {0}, SubscriptionId: {1}",
+                    CultureInfo.InvariantCulture, 
+                    Resources.RenewSubscriptionFailedMessage, 
                     subscriptionUpdateProblem,
                     this.existingSubscription.Id);
 

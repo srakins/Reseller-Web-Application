@@ -92,24 +92,9 @@ Microsoft.WebPortal.ErrorCode = {
     PaymentGatewayIdentityFailureDuringPayment: 17,
 
     /// <summary>
-    /// Failure in payment gateway due to card refusal by financial instituion.
-    /// </summary>
-    CardRefused: 18,
-
-    /// <summary>
-    /// Failure in payment gateway due to use of an expired card during payment.
-    /// </summary>
-    CardExpired: 19,
-
-    /// <summary>
-    /// Failure in payment gateway due to invalid CVN.
-    /// </summary>
-    CardCVNCheckFailed: 20,
-
-    /// <summary>
     /// Failure in payment gateway during payment.
     /// </summary>
-    PaymentGatewayPaymentError: 21
+    PaymentGatewayPaymentError: 18
 }
 
 //@ sourceURL=ErrorCode.js

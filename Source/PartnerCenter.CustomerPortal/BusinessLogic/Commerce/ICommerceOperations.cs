@@ -28,23 +28,22 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce
         /// <summary>
         /// Purchases one or more partner offers.
         /// </summary>
-        /// <param name="purchaseLineItems">A collection of purchase lines items to buy.</param>
+        /// <param name="order">The order to execute.</param>
         /// <returns>A transaction result which summarizes its outcome.</returns>
-        Task<TransactionResult> PurchaseAsync(IEnumerable<PurchaseLineItem> purchaseLineItems);
+        Task<TransactionResult> PurchaseAsync(OrderViewModel order);
 
         /// <summary>
         /// Purchases additional seats for an existing subscription the customer has already bought.
         /// </summary>
-        /// <param name="subscriptionId">The ID of the subscription for which to increase its quantity.</param>
-        /// <param name="seatsToPurchase">The number of new seats to purchase on top of the existing ones.</param>
+        /// <param name="order">The order to execute.</param>
         /// <returns>A transaction result which summarizes its outcome.</returns>
-        Task<TransactionResult> PurchaseAdditionalSeatsAsync(string subscriptionId, int seatsToPurchase);
+        Task<TransactionResult> PurchaseAdditionalSeatsAsync(OrderViewModel order);
 
         /// <summary>
         /// Renews an existing subscription for a customer.
         /// </summary>
-        /// <param name="subscriptionId">The ID of the subscription to renew.</param>
+        /// <param name="order">The order to execute.</param>
         /// <returns>A transaction result which summarizes its outcome.</returns>
-        Task<TransactionResult> RenewSubscriptionAsync(string subscriptionId);
+        Task<TransactionResult> RenewSubscriptionAsync(OrderViewModel order);
     }
 }

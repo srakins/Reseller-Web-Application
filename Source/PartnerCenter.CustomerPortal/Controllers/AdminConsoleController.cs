@@ -8,7 +8,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -87,7 +86,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
                 // there is a new organization logo to be uploaded
                 if (!organizationLogoPostedFile.ContentType.Trim().StartsWith("image/"))
                 {
-                    throw new PartnerDomainException(ErrorCode.InvalidFileType, "Provide an image file type for the organization logo").AddDetail("Field", "OrganizationLogoFile");
+                    throw new PartnerDomainException(ErrorCode.InvalidFileType, Resources.InvalidOrganizationLogoFileTypeMessage).AddDetail("Field", "OrganizationLogoFile");
                 }
 
                 brandingConfiguration.OrganizationLogoContent = organizationLogoPostedFile.InputStream;
@@ -101,7 +100,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
                 }
                 catch (UriFormatException invalidUri)
                 {
-                    throw new PartnerDomainException(ErrorCode.InvalidInput, "Invalid organization logo URI uploaded", invalidUri).AddDetail("Field", "OrganizationLogo");
+                    throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.InvalidOrganizationLogoUriMessage, invalidUri).AddDetail("Field", "OrganizationLogo");
                 }
             }
 
@@ -113,7 +112,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
                 // there is a new header image to be uploaded
                 if (!headerImageUploadPostedFile.ContentType.Trim().StartsWith("image/"))
                 {
-                    throw new PartnerDomainException(ErrorCode.InvalidFileType, "Provide an image file type for the header image").AddDetail("Field", "HeaderImageFile");
+                    throw new PartnerDomainException(ErrorCode.InvalidFileType, Resources.InvalidHeaderImageMessage).AddDetail("Field", "HeaderImageFile");
                 }
 
                 brandingConfiguration.HeaderImageContent = headerImageUploadPostedFile.InputStream;
@@ -127,7 +126,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
                 }
                 catch (UriFormatException invalidUri)
                 {
-                    throw new PartnerDomainException(ErrorCode.InvalidInput, "Invalid header image URI uploaded", invalidUri).AddDetail("Field", "HeaderImage");
+                    throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.InvalidHeaderImageUriMessage, invalidUri).AddDetail("Field", "HeaderImage");
                 }
             }
 
@@ -139,7 +138,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
                 }
                 catch (UriFormatException invalidUri)
                 {
-                    throw new PartnerDomainException(ErrorCode.InvalidInput, "Invalid privacy agreement URI uploaded", invalidUri).AddDetail("Field", "PrivacyAgreement");
+                    throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.InvalidPrivacyUriMessage, invalidUri).AddDetail("Field", "PrivacyAgreement");
                 }
             }
 
@@ -225,7 +224,13 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
         public async Task<PaymentConfiguration> UpdatePaymentConfiguration(PaymentConfiguration paymentConfiguration)
         {           
             // validate the payment configuration before saving. 
-            PayPalGateway.ValidateConfiguration(paymentConfiguration);
+            PayPalGateway.ValidateConfiguration(paymentConfiguration);            
+
+            // create a web experience profile using the branding for the web store. 
+            BrandingConfiguration brandConfig = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync();
+            paymentConfiguration.WebExperienceProfileId = PayPalGateway.CreateWebExperienceProfile(paymentConfiguration, brandConfig, ApplicationDomain.Instance.PortalLocalization.CountryIso2Code);
+
+            // Save the validated & complete payment configuration to repository.
             PaymentConfiguration paymentConfig = await ApplicationDomain.Instance.PaymentConfigurationRepository.UpdateAsync(paymentConfiguration);
 
             return paymentConfig;

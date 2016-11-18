@@ -8,8 +8,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
     /// <param name="feature">The feature for which this presenter is created.</param>
     this.base.constructor.call(this, webPortal, feature, "Add Subscriptions", "/Template/AddSubscriptions/");
 
-    this.addSubscriptionsView = new Microsoft.WebPortal.Views.AddSubscriptionsView(webPortal, "#AddSubscriptionsViewContainer", context);
-    this.creditCardInputView = new Microsoft.WebPortal.Views.CreditCardInputView(webPortal, "#CreditCardInputContainer");
+    this.addSubscriptionsView = new Microsoft.WebPortal.Views.AddSubscriptionsView(webPortal, "#AddSubscriptionsViewContainer", context);    
 
     this.onCancelClicked = function () {
         webPortal.Journey.retract();
@@ -17,6 +16,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
 
     var self = this;
     var isPosting = false;
+    self.OperationType = Microsoft.WebPortal.CommerceOperationType.NewPurchase; //PurchaseSubscriptions.
 
     this.getOrders = function () {
         var orders = [];
@@ -24,6 +24,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
         for (var i in this.addSubscriptionsView.subscriptionsList.rows()) {
             orders.push({
                 OfferId: this.addSubscriptionsView.subscriptionsList.rows()[i].offer.Id,
+                SubscriptionId: this.addSubscriptionsView.subscriptionsList.rows()[i].offer.Id,                
                 Quantity: this.addSubscriptionsView.subscriptionsList.rows()[i].quantity()
             });
         }
@@ -48,18 +49,20 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
 
             isPosting = true;
 
-            var notification = new Microsoft.WebPortal.Services.Notification(Microsoft.WebPortal.Services.Notification.NotificationType.Progress, self.webPortal.Resources.Strings.Plugins.AddSubscriptionPage.AddingSubscriptionMessage);
+            var notification = new Microsoft.WebPortal.Services.Notification(Microsoft.WebPortal.Services.Notification.NotificationType.Progress, self.webPortal.Resources.Strings.Plugins.AddSubscriptionPage.PreparingOrderAndRedirectingMessage);
             self.webPortal.Services.Notifications.add(notification);
 
-            new Microsoft.WebPortal.Utilities.RetryableServerCall(this.webPortal.Helpers.ajaxCall("api/Subscription", Microsoft.WebPortal.HttpMethod.Post, {
+            new Microsoft.WebPortal.Utilities.RetryableServerCall(this.webPortal.Helpers.ajaxCall("api/Order/Prepare", Microsoft.WebPortal.HttpMethod.Post, {
                 Subscriptions: self.getOrders(),
-                CreditCard: self.getCreditCardInfo(),
+                OperationType: self.OperationType
                 // CustomerId: registeredCustomer.MicrosoftId // Will be retrieved from loggin in principle.              
             }, Microsoft.WebPortal.ContentType.Json, 120000),
                 "AddSubscriptions", []).execute()
-                .done(function () {
-                    notification.dismiss();                    
-                    self.webPortal.Journey.start(Microsoft.WebPortal.Feature.Subscriptions);
+                .done(function (result) {
+                    // hand it off to the subscriptions page.        
+                    notification.dismiss();
+                    // we need to now redirect to paypal based on the response from the API.             
+                    window.location = result;
                 })
                 .fail(function (result, status, error) {                    
                     notification.type(Microsoft.WebPortal.Services.Notification.NotificationType.Error);
@@ -76,27 +79,8 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
                             case Microsoft.WebPortal.ErrorCode.InvalidInput:
                                 notification.message(self.webPortal.Resources.Strings.Plugins.AddSubscriptionPage.InvalidInputErrorPrefix + errorPayload.Details.ErrorMessage);
                                 break;
-                            case Microsoft.WebPortal.ErrorCode.AlreadyExists:
-                                notification.message(self.webPortal.Resources.Strings.Plugins.AddSubscriptionPage.CannotAddExistingSubscriptionError);
-                                break;
                             case Microsoft.WebPortal.ErrorCode.DownstreamServiceError:
                                 notification.message(self.webPortal.Resources.Strings.Plugins.AddSubscriptionPage.DownstreamErrorPrefix + errorPayload.Details.ErrorMessage);
-                                break;
-                            case Microsoft.WebPortal.ErrorCode.CardCVNCheckFailed:
-                                notification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.CardCVNFailedError);
-                                break;
-                            case Microsoft.WebPortal.ErrorCode.CardExpired:
-                                notification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.CardExpiredError + self.webPortal.Resources.Strings.Plugins.CreditCardView.UseAlternateCardMessage);
-                                break;
-                            case Microsoft.WebPortal.ErrorCode.CardRefused:
-                                notification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.CardRefusedError + self.webPortal.Resources.Strings.Plugins.CreditCardView.UseAlternateCardMessage);
-                                break;
-                            case Microsoft.WebPortal.ErrorCode.PaymentGatewayPaymentError:
-                                notification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.UseAlternateCardMessage);
-                                break;
-                            case Microsoft.WebPortal.ErrorCode.PaymentGatewayIdentityFailureDuringPayment:
-                            case Microsoft.WebPortal.ErrorCode.PaymentGatewayFailure:
-                                notification.message(errorPayload.Details.ErrorMessage);
                                 break;
                             default:
                                 notification.message(self.webPortal.Resources.Strings.Plugins.AddSubscriptionPage.OrderAddFailureMessage);
@@ -113,21 +97,6 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
             // the form is invalid
         }
     }
-
-    this.getCreditCardInfo = function () {
-        var paymentCard = {
-            CreditCardType: this.creditCardInputView.viewModel.CardType(),
-            CardHolderFirstName: this.creditCardInputView.viewModel.CardHolderFirstName(),
-            CardHolderLastName: this.creditCardInputView.viewModel.CardHolderLastName(),
-            CreditCardNumber: this.creditCardInputView.viewModel.CardNumber(),
-            CreditCardExpiryMonth: this.creditCardInputView.viewModel.Month(),
-            CreditCardExpiryYear: this.creditCardInputView.viewModel.Year(),
-            CreditCardCvn: this.creditCardInputView.viewModel.CardCvn()
-        }
-
-        return paymentCard;
-    }
-
 }
 
 // inherit BasePresenter
@@ -146,8 +115,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter.prototype.onRender = function () {
 
     ko.applyBindings(this, $("#Form")[0]);
 
-    this.addSubscriptionsView.render();
-    this.creditCardInputView.render();
+    this.addSubscriptionsView.render();    
 }
 
 Microsoft.WebPortal.AddSubscriptionsPresenter.prototype.onShow = function () {
@@ -155,8 +123,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter.prototype.onShow = function () {
     /// Called when content is shown.
     /// </summary>
 
-    this.addSubscriptionsView.show();
-    this.creditCardInputView.show();
+    this.addSubscriptionsView.show();    
 
     // show the offers dialog if there is no row set from parent page. 
     if (this.addSubscriptionsView.subscriptionsList.rows().length <= 0) {

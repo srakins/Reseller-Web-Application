@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -150,17 +147,11 @@
   <data name="First" xml:space="preserve">
     <value>First</value>
   </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help</value>
-  </data>
   <data name="InvalidPortalConfiguration" xml:space="preserve">
     <value>Portal configuration seems to be invalid</value>
   </data>
   <data name="Last" xml:space="preserve">
     <value>Last</value>
-  </data>
-  <data name="LearnMore" xml:space="preserve">
-    <value>Learn more</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading</value>
@@ -170,9 +161,6 @@
   </data>
   <data name="MoreActionsTooltip" xml:space="preserve">
     <value>More actions...</value>
-  </data>
-  <data name="MostPopular" xml:space="preserve">
-    <value>MOST POPULAR</value>
   </data>
   <data name="NavigateBackTo" xml:space="preserve">
     <value>Go back to: </value>
@@ -198,26 +186,14 @@
   <data name="PortalConfigurationNotFound" xml:space="preserve">
     <value>Portal configuation could not be found</value>
   </data>
-  <data name="PoweredBy" xml:space="preserve">
-    <value>Powered by Microsoft WebPortal.Net</value>
-  </data>
-  <data name="ProductTitle" xml:space="preserve">
-    <value>Sample Corporation</value>
-  </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember Me</value>
-  </data>
-  <data name="Retry" xml:space="preserve">
-    <value>retry</value>
   </data>
   <data name="RetryCapital" xml:space="preserve">
     <value>Retry</value>
   </data>
   <data name="Signout" xml:space="preserve">
     <value>Sign out</value>
-  </data>
-  <data name="Support" xml:space="preserve">
-    <value>Support</value>
   </data>
   <data name="TemplateLoadFailureMessage" xml:space="preserve">
     <value>Could not get the feature content</value>
@@ -234,32 +210,14 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="AddLink" xml:space="preserve">
-    <value>add</value>
-  </data>
-  <data name="AddPlan" xml:space="preserve">
-    <value>Add plan</value>
-  </data>
   <data name="EmptyOffersErrorMessage" xml:space="preserve">
     <value>You must select at least one offer to purchase.</value>
   </data>
   <data name="TotalAmountCaption" xml:space="preserve">
     <value>Total Amount</value>
   </data>
-  <data name="MonthlyFee" xml:space="preserve">
-    <value>Fees per month</value>
-  </data>
-  <data name="Quantity" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
   <data name="RemoveFromCart" xml:space="preserve">
     <value>Remove from cart</value>
-  </data>
-  <data name="AccountSuffix" xml:space="preserve">
-    <value>- account</value>
-  </data>
-  <data name="AddCapital" xml:space="preserve">
-    <value>Add</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>Address</value>
@@ -267,17 +225,11 @@
   <data name="AdminUserAccount" xml:space="preserve">
     <value>Admin user account</value>
   </data>
-  <data name="CompanyInformation" xml:space="preserve">
-    <value>Company information</value>
-  </data>
-  <data name="CompanyName" xml:space="preserve">
-    <value>Company name</value>
-  </data>
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
   <data name="ConfirmationMessage" xml:space="preserve">
-    <value>Thank you! We have received your order. It may take a few minutes to process.</value>
+    <value>Thank you! Customer information has been setup. Please review this page and click submit to place your order.</value>
   </data>
   <data name="ContactInformation" xml:space="preserve">
     <value>Customer information</value>
@@ -285,14 +237,8 @@
   <data name="Done" xml:space="preserve">
     <value>Done</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Language</value>
-  </data>
   <data name="MicrosoftId" xml:space="preserve">
     <value>Microsoft ID</value>
-  </data>
-  <data name="MonthlyPrice" xml:space="preserve">
-    <value>Price per month</value>
   </data>
   <data name="SetupInformation" xml:space="preserve">
     <value>Details</value>
@@ -306,12 +252,6 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>Update</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>User name</value>
-  </data>
   <data name="AddSubscriptions" xml:space="preserve">
     <value>Add subscriptions</value>
   </data>
@@ -324,35 +264,14 @@
   <data name="AcceptTermsValidationMessage" xml:space="preserve">
     <value>You must accept the terms and conditions</value>
   </data>
-  <data name="ActiveStatus" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="CvnValidationMessage" xml:space="preserve">
-    <value>Please enter a valid CVN</value>
-  </data>
   <data name="DomainPrefixValidationMessage" xml:space="preserve">
     <value>Please enter a valid domain prefix</value>
-  </data>
-  <data name="MonthPerUser" xml:space="preserve">
-    <value>per user/month</value>
   </data>
   <data name="PhoneValidationMessage" xml:space="preserve">
     <value>Please enter a valid phone number</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="SubscripitonAlias" xml:space="preserve">
-    <value>Subscripiton alias</value>
-  </data>
   <data name="SubscriptionIDLabel" xml:space="preserve">
     <value>Subscription ID:</value>
-  </data>
-  <data name="SuspendedStatus" xml:space="preserve">
-    <value>Suspended</value>
-  </data>
-  <data name="UpdateSubscriptions" xml:space="preserve">
-    <value>Add more licenses</value>
   </data>
   <data name="CompanyBrandingConfigurationCaption" xml:space="preserve">
     <value>Update your company information</value>
@@ -362,9 +281,6 @@
   </data>
   <data name="OffersConfigurationCaption" xml:space="preserve">
     <value>Choose which offers to sell</value>
-  </data>
-  <data name="OtherSettingsConfigurationCaption" xml:space="preserve">
-    <value>Other settings</value>
   </data>
   <data name="PaymentConfigurationCaption" xml:space="preserve">
     <value>Add a payment method</value>
@@ -384,9 +300,6 @@
   <data name="Dash" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="FeaturesListRowCaption" xml:space="preserve">
-    <value>Features:</value>
-  </data>
   <data name="SummaryListRowCaption" xml:space="preserve">
     <value>Summary:</value>
   </data>
@@ -396,17 +309,11 @@
   <data name="Customization" xml:space="preserve">
     <value>Customization</value>
   </data>
-  <data name="DetailedFeaturesCaption" xml:space="preserve">
+  <data name="FeaturesCaption" xml:space="preserve">
     <value>Features:</value>
-  </data>
-  <data name="LicenseCaption" xml:space="preserve">
-    <value>License</value>
   </data>
   <data name="SelectMicrosoftOfferCaption" xml:space="preserve">
     <value>Select a Microsoft offer:</value>
-  </data>
-  <data name="SummaryCaption" xml:space="preserve">
-    <value>Summary:</value>
   </data>
   <data name="YourAnnualPriceCaption" xml:space="preserve">
     <value>Annual price:</value>
@@ -432,23 +339,14 @@
   <data name="BrandingSectionTooltip" xml:space="preserve">
     <value>Click to configure your company's branding</value>
   </data>
-  <data name="LicenseHeader" xml:space="preserve">
-    <value>License:</value>
-  </data>
   <data name="OfferFeaturePlaceHolder" xml:space="preserve">
-    <value>Describe a feature this offers gives</value>
-  </data>
-  <data name="OfferLicensePlaceHolder" xml:space="preserve">
-    <value>Example: $100 Per Year</value>
+    <value>Describe a feature this offer gives</value>
   </data>
   <data name="OffersSectionTooltip" xml:space="preserve">
     <value>Click to configure your offers</value>
   </data>
   <data name="OfferSummaryPlaceHolder" xml:space="preserve">
     <value>Write an offer summary</value>
-  </data>
-  <data name="OtherSettingsSectionTooltip" xml:space="preserve">
-    <value>Click to configure other settings</value>
   </data>
   <data name="PaymentSectionTooltip" xml:space="preserve">
     <value>Click to configure your payment options</value>
@@ -594,14 +492,8 @@
   <data name="ContactSalesHeader" xml:space="preserve">
     <value>Sales contact:</value>
   </data>
-  <data name="ContactSalesSubText" xml:space="preserve">
-    <value>Shown in the Contact us section of the header</value>
-  </data>
   <data name="ContactUsFieldHeader" xml:space="preserve">
     <value>Support contact:</value>
-  </data>
-  <data name="ContactUsSubText" xml:space="preserve">
-    <value>Shown in the Contact us section of the header</value>
   </data>
   <data name="SupportEmailAddressHeader" xml:space="preserve">
     <value>Support email</value>
@@ -630,7 +522,7 @@
   <data name="OrganizationNameFieldSubText" xml:space="preserve">
     <value>Your company’s legal name, shown on the header of every page</value>
   </data>
-  <data name="PhoneHeader" xml:space="preserve">
+  <data name="PhoneHeaderCaption" xml:space="preserve">
     <value>Phone number</value>
   </data>
   <data name="ReloadPortalButtonCaption" xml:space="preserve">
@@ -678,9 +570,6 @@
   <data name="PayPalClientSecretSubText" xml:space="preserve">
     <value>Enter your PayPal client secret</value>
   </data>
-  <data name="PayPalWebsiteCaption" xml:space="preserve">
-    <value>Paypal.com</value>
-  </data>
   <data name="SandboxAccountTypeCaption" xml:space="preserve">
     <value>Paypal sandbox account</value>
   </data>
@@ -696,27 +585,6 @@
   <data name="UpdatePaymentSuccessMessage" xml:space="preserve">
     <value>Payment information updated</value>
   </data>
-  <data name="CreditCardCVNCaption" xml:space="preserve">
-    <value>Verification numer (CVN)</value>
-  </data>
-  <data name="CreditCardExpirationDateCaption" xml:space="preserve">
-    <value>Expriration date</value>
-  </data>
-  <data name="CreditCardFirstNameCaption" xml:space="preserve">
-    <value>First name on card</value>
-  </data>
-  <data name="CreditCardInfoCaption" xml:space="preserve">
-    <value>Credit Card Information</value>
-  </data>
-  <data name="CreditCardLastNameCaption" xml:space="preserve">
-    <value>Last name on card</value>
-  </data>
-  <data name="CreditCardNumberCaption" xml:space="preserve">
-    <value>Card number</value>
-  </data>
-  <data name="CreditCardTypeCaption" xml:space="preserve">
-    <value>Credit card type</value>
-  </data>
   <data name="CustomerProfileAddressLine1Caption" xml:space="preserve">
     <value>Address line 1</value>
   </data>
@@ -731,9 +599,6 @@
   </data>
   <data name="CustomerProfileCompanyInfoSectionCaption" xml:space="preserve">
     <value>Company Information</value>
-  </data>
-  <data name="CustomerProfileCompanyNameCaption" xml:space="preserve">
-    <value>Company Name</value>
   </data>
   <data name="CustomerProfileContactInfoSectionCaption" xml:space="preserve">
     <value>Contact Information</value>
@@ -759,32 +624,14 @@
   <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
     <value>This will be the user id you'll use with your Office 365 account.</value>
   </data>
-  <data name="CustomerProfileOffice365SectionCaption" xml:space="preserve">
-    <value>Office 365</value>
-  </data>
   <data name="CustomerProfileOffice365UserNameCaption" xml:space="preserve">
     <value>Username</value>
-  </data>
-  <data name="CustomerProfilePasswordCaption" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="CustomerProfilePhoneNumberCaption" xml:space="preserve">
-    <value>Phone number</value>
-  </data>
-  <data name="CustomerProfileReEnterPasswordCaption" xml:space="preserve">
-    <value>Re-enter password</value>
   </data>
   <data name="CustomerProfileStateCaption" xml:space="preserve">
     <value>State/Province</value>
   </data>
   <data name="CustomerProfileZipPostalCaption" xml:space="preserve">
     <value>Zip / Postal code</value>
-  </data>
-  <data name="RegistrationConfirmAmountPaidOnCaption" xml:space="preserve">
-    <value>Amount paid on {CurrentDate}</value>
-  </data>
-  <data name="RegistrationConfirmAnnualCommitmentCaption" xml:space="preserve">
-    <value>Annual commitment expires on {currentDate + 365}</value>
   </data>
   <data name="UnpaidSubscriptionSuffix" xml:space="preserve">
     <value>-Unpaid</value>
@@ -801,9 +648,6 @@
   <data name="SubscriptionSummaryAmountPaidOnPrefixCaption" xml:space="preserve">
     <value>Amount paid on</value>
   </data>
-  <data name="SubscriptionSummaryAnnualCommitmentExpiryPrefixCaption" xml:space="preserve">
-    <value>Annual commitment expires on</value>
-  </data>
   <data name="SubscriptionSummaryAnnualPricePrefixCaption" xml:space="preserve">
     <value>Price Paid</value>
   </data>
@@ -812,9 +656,6 @@
   </data>
   <data name="SubscriptionSummaryRenewLinkCaption" xml:space="preserve">
     <value>Renew</value>
-  </data>
-  <data name="SubscriptionSummaryUpdateLinkCaption" xml:space="preserve">
-    <value>Add more licenses</value>
   </data>
   <data name="CommerceOperationTypeAddSeats" xml:space="preserve">
     <value>Added seats</value>
@@ -825,23 +666,17 @@
   <data name="CommerceOperationTypeRenewSubscription" xml:space="preserve">
     <value>Renewal</value>
   </data>
-  <data name="CustomerOrderRegistrationMessage" xml:space="preserve">
-    <value>Creating order for your registration...</value>
-  </data>
   <data name="CustomerRegistrationFailureMessage" xml:space="preserve">
     <value>Could not register the customer. Please try later.</value>
   </data>
   <data name="CustomerRegistrationMessage" xml:space="preserve">
-    <value>Registering and Creating order...</value>
+    <value>Registering customer...</value>
   </data>
   <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
     <value>Successfully created customer</value>
   </data>
   <data name="OrderRegistrationFailureMessage" xml:space="preserve">
     <value>Order Registration Error</value>
-  </data>
-  <data name="UpdatingSubscriptionMessage" xml:space="preserve">
-    <value>Updating subscriptions...</value>
   </data>
   <data name="BuyMoreSubscriptionsMessage" xml:space="preserve">
     <value>Buy more subscriptions</value>
@@ -860,21 +695,6 @@
   </data>
   <data name="OrderUpdateFailureMessage" xml:space="preserve">
     <value>Order Update Error</value>
-  </data>
-  <data name="CreditCardAmexCaption" xml:space="preserve">
-    <value>Amex</value>
-  </data>
-  <data name="CreditCardDiscoverCaption" xml:space="preserve">
-    <value>Discover</value>
-  </data>
-  <data name="CreditCardMasterCaption" xml:space="preserve">
-    <value>Master Card</value>
-  </data>
-  <data name="CreditCardVisaCaption" xml:space="preserve">
-    <value>Visa</value>
-  </data>
-  <data name="CreditCardNotSupportedCaption" xml:space="preserve">
-    <value>Not supported</value>
   </data>
   <data name="BadInputGenericMessage" xml:space="preserve">
     <value>There was an input error encountered. Please check the inputs and try again.</value>
@@ -909,9 +729,6 @@
   <data name="EmptyListCaption" xml:space="preserve">
     <value>Please add a subscription</value>
   </data>
-  <data name="PickOffer" xml:space="preserve">
-    <value>Pick your Offer</value>
-  </data>
   <data name="HomePage" xml:space="preserve">
     <value>Home page</value>
   </data>
@@ -936,14 +753,11 @@
   <data name="DownstreamErrorPrefix" xml:space="preserve">
     <value>We are unable to process your request at this time. Please try later or contact us over email. Error Details -    </value>
   </data>
-  <data name="InvalidCustomerIdErrorMessage" xml:space="preserve">
-    <value>Customer Id is invalid.</value>
-  </data>
   <data name="MoreThanOneSubscriptionUpdateErrorMessage" xml:space="preserve">
     <value>Only one subcription can be updated.</value>
   </data>
-  <data name="AddingSubscriptionMessage" xml:space="preserve">
-    <value>Adding subcriptions...</value>
+  <data name="PreparingOrderAndRedirectingMessage" xml:space="preserve">
+    <value>Preparing order and redirecting to payment gateway...</value>
   </data>
   <data name="OrderAddFailureMessage" xml:space="preserve">
     <value>Error during adding subscriptions. </value>
@@ -1023,18 +837,6 @@
   <data name="CannotAddExistingSubscriptionError" xml:space="preserve">
     <value>One or more offers you are trying to add already exists. You can add more licenses to existing subscriptions.</value>
   </data>
-  <data name="CardCVNFailedError" xml:space="preserve">
-    <value>The card verfiication number check failed. Please enter a valid CVN.</value>
-  </data>
-  <data name="CardExpiredError" xml:space="preserve">
-    <value>The card has expired.</value>
-  </data>
-  <data name="CardRefusedError" xml:space="preserve">
-    <value>The card was refused.</value>
-  </data>
-  <data name="UseAlternateCardMessage" xml:space="preserve">
-    <value>Please use an alternate card.</value>
-  </data>
   <data name="UserPerYear" xml:space="preserve">
     <value>user/year</value>
   </data>
@@ -1043,5 +845,137 @@
   </data>
   <data name="InvalidContactUsPhone" xml:space="preserve">
     <value>Please enter a valid contact support phone</value>
+  </data>
+  <data name="ProcessingOrderMessage" xml:space="preserve">
+    <value>Payment information collected, processing order...</value>
+  </data>
+  <data name="AddSeatsOperationCaption" xml:space="preserve">
+    <value>Adding seats to subscription.</value>
+  </data>
+  <data name="NewPurchaseOperationCaption" xml:space="preserve">
+    <value>Adding subscriptions.</value>
+  </data>
+  <data name="RenewOperationCaption" xml:space="preserve">
+    <value>Renewing subscription.</value>
+  </data>
+  <data name="OrderFailureMessage" xml:space="preserve">
+    <value>Error while processing order. Please retry later.</value>
+  </data>
+  <data name="OrderProcessingFailureNotification" xml:space="preserve">
+    <value>Failure in processing order. Please click done to try again.</value>
+  </data>
+  <data name="PaymentReceiptFailureNotification" xml:space="preserve">
+    <value>Failure in receiving payment information. Please click done to try again.</value>
+  </data>
+  <data name="ProcessingOrderNotification" xml:space="preserve">
+    <value>Successfully received payment information. Processing order...</value>
+  </data>
+  <data name="ProcessOrderPageCaption" xml:space="preserve">
+    <value>Order Processing Page.</value>
+  </data>
+  <data name="NewCustomerOrderSuccessMessage" xml:space="preserve">
+    <value>Your registration order was successfully processed.</value>
+  </data>
+  <data name="NewCustomerProcessOrderFailureReceivingPaymentMessage" xml:space="preserve">
+    <value>Failure in receiving payment information. Please login and add subscriptions.</value>
+  </data>
+  <data name="PayPalUnableToProcessPayment" xml:space="preserve">
+    <value>We are unable to process your payment.</value>
+  </data>
+  <data name="ShowInContactUsHeaderCaption" xml:space="preserve">
+    <value>Shown in the Contact us section of the header</value>
+  </data>
+  <data name="ADTenantIsAlreadyRegisteredToCustomer" xml:space="preserve">
+    <value>{0} AD tenant is already registered to Partner Center customer: {1}</value>
+  </data>
+  <data name="AssertPhoneNumberInvalidPrefix" xml:space="preserve">
+    <value>phone number</value>
+  </data>
+  <data name="AssertPhoneNumberInvalidError" xml:space="preserve">
+    <value>{0} is invalid.</value>
+  </data>
+  <data name="AssertNumberPositiveInvalidPrefix" xml:space="preserve">
+    <value>number</value>
+  </data>
+  <data name="AssertNumberPositiveInvalidError" xml:space="preserve">
+    <value>{0} must be greater than zero</value>
+  </data>
+  <data name="AssertStringNotEmptyInvalidPrefix" xml:space="preserve">
+    <value>string</value>
+  </data>
+  <data name="AssertStringNotEmptyInvalidError" xml:space="preserve">
+    <value>{0} is not set</value>
+  </data>
+  <data name="RenewSubscriptionFailedMessage" xml:space="preserve">
+    <value>RenewSubscription.ExecuteAsync() Failed: {0}, SubscriptionId: {1}</value>
+  </data>
+  <data name="InvalidOrganizationLogoFileTypeMessage" xml:space="preserve">
+    <value>Provide an image file type for the organization logo</value>
+  </data>
+  <data name="InvalidOrganizationLogoUriMessage" xml:space="preserve">
+    <value>Invalid organization logo URI uploaded</value>
+  </data>
+  <data name="InvalidHeaderImageMessage" xml:space="preserve">
+    <value>Provide an image file type for the header image</value>
+  </data>
+  <data name="InvalidHeaderImageUriMessage" xml:space="preserve">
+    <value>Invalid header image URI uploaded</value>
+  </data>
+  <data name="InvalidPrivacyUriMessage" xml:space="preserve">
+    <value>Invalid privacy agreement URI uploaded</value>
+  </data>
+  <data name="ErrorPageDetailsCaption" xml:space="preserve">
+    <value>An error occurred while processing your request.</value>
+  </data>
+  <data name="ErrorPageTitleCaption" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="InvalidOperationForOrderMessage" xml:space="preserve">
+    <value>Invalid operation being performed.</value>
+  </data>
+  <data name="NotEnoughItemsInOrderErrorMessage" xml:space="preserve">
+    <value>Order should have at least one subscription item.</value>
+  </data>
+  <data name="InvalidPaymentModeErrorMessage" xml:space="preserve">
+    <value>Payment mode is not supported</value>
+  </data>
+  <data name="OfferPriceShouldBeMoreThanZero" xml:space="preserve">
+    <value>Offer price should be more than zero</value>
+  </data>
+  <data name="MicrosoftOfferIdMustBeSet" xml:space="preserve">
+    <value>MicrosoftOfferId must be set</value>
+  </data>
+  <data name="IdMustBeAValidGUID" xml:space="preserve">
+    <value>Id must be a valid GUID</value>
+  </data>
+  <data name="FailedToUpdatePartnerOffersStore" xml:space="preserve">
+    <value>Failed to update partner offers persistence</value>
+  </data>
+  <data name="MicrosoftOfferImmutableErrorMessage" xml:space="preserve">
+    <value>Microsoft offer is not allowed to be updated. Create a new offer instead.</value>
+  </data>
+  <data name="OfferNotFound" xml:space="preserve">
+    <value>Offer not found</value>
+  </data>
+  <data name="ContactUsSectionNotFound" xml:space="preserve">
+    <value>ContactUs section not found in portal branding configuration</value>
+  </data>
+  <data name="InvalidContactUsEmailAddress" xml:space="preserve">
+    <value>Invalid contact us email address</value>
+  </data>
+  <data name="InvalidContactUsPhoneExceptionMessage" xml:space="preserve">
+    <value>Invalid contact us phone</value>
+  </data>
+  <data name="InvalidContactSalesEmailAddress" xml:space="preserve">
+    <value>Invalid contact sales email address</value>
+  </data>
+  <data name="InvalidContactSalesPhoneExceptionMessage" xml:space="preserve">
+    <value>Invalid contact sales phone</value>
+  </data>
+  <data name="AddMoreLicensesCaption" xml:space="preserve">
+    <value>Add more licenses</value>
+  </data>
+  <data name="PayPalWebsiteCaption" xml:space="preserve">
+    <value>PayPal.com</value>
   </data>
 </root>

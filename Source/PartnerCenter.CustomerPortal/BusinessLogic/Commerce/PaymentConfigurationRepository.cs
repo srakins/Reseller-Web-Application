@@ -110,13 +110,14 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic
         {
             paymentConfiguration.AssertNotNull(nameof(paymentConfiguration));
 
+            // Dont validate WebExperienceProfileId since it will break upgrade as existing deployments dont have this configuration. 
             paymentConfiguration.ClientId.AssertNotEmpty("ClientId");
             paymentConfiguration.ClientSecret.AssertNotEmpty("ClientSecret");
             paymentConfiguration.AccountType.AssertNotEmpty("Mode");
 
             if (!this.supportedPaymentModes.Contains(paymentConfiguration.AccountType))
             {
-                throw new PartnerDomainException("Payment mode is not supported");
+                throw new PartnerDomainException(Resources.InvalidPaymentModeErrorMessage);
             }
 
             await Task.FromResult(0);

@@ -14,11 +14,10 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce
     public interface IPaymentGateway
     {
         /// <summary>
-        /// Authorizes a payment. Ensures the payment is valid.
+        /// Executes a payment. 
         /// </summary>
-        /// <param name="amount">The amount to charge.</param>
-        /// <returns>An authorization code.</returns>
-        Task<string> AuthorizeAsync(decimal amount);
+        /// <returns>An Authorization code.</returns>
+        Task<string> ExecutePaymentAsync();
 
         /// <summary>
         /// Finalizes an authorized payment.

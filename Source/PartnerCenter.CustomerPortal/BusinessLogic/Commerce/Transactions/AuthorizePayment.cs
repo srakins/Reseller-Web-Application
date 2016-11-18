@@ -19,14 +19,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Tr
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorizePayment"/> class.
         /// </summary>
-        /// <param name="paymentGateway">The payment gateway to use for authorization.</param>
-        /// <param name="amountToCharge">The amount to charge.</param>
-        public AuthorizePayment(IPaymentGateway paymentGateway, decimal amountToCharge)
-        {
-            paymentGateway.AssertNotNull(nameof(paymentGateway));
-            amountToCharge.AssertPositive(nameof(amountToCharge));
-
-            this.Amount = amountToCharge;
+        /// <param name="paymentGateway">The payment gateway to use for authorization.</param>        
+        public AuthorizePayment(IPaymentGateway paymentGateway)
+        {            
+            paymentGateway.AssertNotNull(nameof(paymentGateway));            
+            
             this.PaymentGateway = paymentGateway;
         }
 
@@ -34,11 +31,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Tr
         /// Gets the payment gateway used for authorization.
         /// </summary>
         public IPaymentGateway PaymentGateway { get; private set; }
-
-        /// <summary>
-        /// Gets the amount to charge.
-        /// </summary>
-        public decimal Amount { get; private set; }
 
         /// <summary>
         /// Gets the authorization code.
@@ -52,7 +44,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Tr
         public async Task ExecuteAsync()
         {
             // authorize with the payment gateway
-            this.Result = await this.PaymentGateway.AuthorizeAsync(this.Amount);
+            this.Result = await this.PaymentGateway.ExecutePaymentAsync();            
         }
 
         /// <summary>

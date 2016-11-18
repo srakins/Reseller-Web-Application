@@ -61,15 +61,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
-        /// </summary>
-        public static string About {
-            get {
-                return ResourceManager.GetString("About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to I accept the terms and conditions.
         /// </summary>
         public static string AcceptTerms {
@@ -97,33 +88,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - account.
-        /// </summary>
-        public static string AccountSuffix {
-            get {
-                return ResourceManager.GetString("AccountSuffix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Active.
-        /// </summary>
-        public static string ActiveStatus {
-            get {
-                return ResourceManager.GetString("ActiveStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        public static string AddCapital {
-            get {
-                return ResourceManager.GetString("AddCapital", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AddCaption {
@@ -133,20 +97,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding subcriptions....
+        ///   Looks up a localized string similar to Add more licenses.
         /// </summary>
-        public static string AddingSubscriptionMessage {
+        public static string AddMoreLicensesCaption {
             get {
-                return ResourceManager.GetString("AddingSubscriptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to add.
-        /// </summary>
-        public static string AddLink {
-            get {
-                return ResourceManager.GetString("AddLink", resourceCulture);
+                return ResourceManager.GetString("AddMoreLicensesCaption", resourceCulture);
             }
         }
         
@@ -178,20 +133,20 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add plan.
-        /// </summary>
-        public static string AddPlan {
-            get {
-                return ResourceManager.GetString("AddPlan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {
             get {
                 return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding seats to subscription..
+        /// </summary>
+        public static string AddSeatsOperationCaption {
+            get {
+                return ResourceManager.GetString("AddSeatsOperationCaption", resourceCulture);
             }
         }
         
@@ -232,6 +187,15 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} AD tenant is already registered to Partner Center customer: {1}.
+        /// </summary>
+        public static string ADTenantIsAlreadyRegisteredToCustomer {
+            get {
+                return ResourceManager.GetString("ADTenantIsAlreadyRegisteredToCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Annual price.
         /// </summary>
         public static string AnnualPriceCaption {
@@ -246,6 +210,60 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string AnnualTotalCaption {
             get {
                 return ResourceManager.GetString("AnnualTotalCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be greater than zero.
+        /// </summary>
+        public static string AssertNumberPositiveInvalidError {
+            get {
+                return ResourceManager.GetString("AssertNumberPositiveInvalidError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to number.
+        /// </summary>
+        public static string AssertNumberPositiveInvalidPrefix {
+            get {
+                return ResourceManager.GetString("AssertNumberPositiveInvalidPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid..
+        /// </summary>
+        public static string AssertPhoneNumberInvalidError {
+            get {
+                return ResourceManager.GetString("AssertPhoneNumberInvalidError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to phone number.
+        /// </summary>
+        public static string AssertPhoneNumberInvalidPrefix {
+            get {
+                return ResourceManager.GetString("AssertPhoneNumberInvalidPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not set.
+        /// </summary>
+        public static string AssertStringNotEmptyInvalidError {
+            get {
+                return ResourceManager.GetString("AssertStringNotEmptyInvalidError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to string.
+        /// </summary>
+        public static string AssertStringNotEmptyInvalidPrefix {
+            get {
+                return ResourceManager.GetString("AssertStringNotEmptyInvalidPrefix", resourceCulture);
             }
         }
         
@@ -385,33 +403,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The card verfiication number check failed. Please enter a valid CVN..
-        /// </summary>
-        public static string CardCVNFailedError {
-            get {
-                return ResourceManager.GetString("CardCVNFailedError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The card has expired..
-        /// </summary>
-        public static string CardExpiredError {
-            get {
-                return ResourceManager.GetString("CardExpiredError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The card was refused..
-        /// </summary>
-        public static string CardRefusedError {
-            get {
-                return ResourceManager.GetString("CardRefusedError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Category {
@@ -475,24 +466,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company information.
-        /// </summary>
-        public static string CompanyInformation {
-            get {
-                return ResourceManager.GetString("CompanyInformation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Company name.
-        /// </summary>
-        public static string CompanyName {
-            get {
-                return ResourceManager.GetString("CompanyName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Configure your website.
         /// </summary>
         public static string ConfigurePortalMessage {
@@ -511,7 +484,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you! We have received your order. It may take a few minutes to process..
+        ///   Looks up a localized string similar to Thank you! Customer information has been setup. Please review this page and click submit to place your order..
         /// </summary>
         public static string ConfirmationMessage {
             get {
@@ -543,15 +516,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string ContactSalesHeader {
             get {
                 return ResourceManager.GetString("ContactSalesHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shown in the Contact us section of the header.
-        /// </summary>
-        public static string ContactSalesSubText {
-            get {
-                return ResourceManager.GetString("ContactSalesSubText", resourceCulture);
             }
         }
         
@@ -592,11 +556,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shown in the Contact us section of the header.
+        ///   Looks up a localized string similar to ContactUs section not found in portal branding configuration.
         /// </summary>
-        public static string ContactUsSubText {
+        public static string ContactUsSectionNotFound {
             get {
-                return ResourceManager.GetString("ContactUsSubText", resourceCulture);
+                return ResourceManager.GetString("ContactUsSectionNotFound", resourceCulture);
             }
         }
         
@@ -651,123 +615,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string CouldNotRetrieveSubscriptionsSummary {
             get {
                 return ResourceManager.GetString("CouldNotRetrieveSubscriptionsSummary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Amex.
-        /// </summary>
-        public static string CreditCardAmexCaption {
-            get {
-                return ResourceManager.GetString("CreditCardAmexCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Verification numer (CVN).
-        /// </summary>
-        public static string CreditCardCVNCaption {
-            get {
-                return ResourceManager.GetString("CreditCardCVNCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Discover.
-        /// </summary>
-        public static string CreditCardDiscoverCaption {
-            get {
-                return ResourceManager.GetString("CreditCardDiscoverCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expriration date.
-        /// </summary>
-        public static string CreditCardExpirationDateCaption {
-            get {
-                return ResourceManager.GetString("CreditCardExpirationDateCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to First name on card.
-        /// </summary>
-        public static string CreditCardFirstNameCaption {
-            get {
-                return ResourceManager.GetString("CreditCardFirstNameCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Credit Card Information.
-        /// </summary>
-        public static string CreditCardInfoCaption {
-            get {
-                return ResourceManager.GetString("CreditCardInfoCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last name on card.
-        /// </summary>
-        public static string CreditCardLastNameCaption {
-            get {
-                return ResourceManager.GetString("CreditCardLastNameCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Master Card.
-        /// </summary>
-        public static string CreditCardMasterCaption {
-            get {
-                return ResourceManager.GetString("CreditCardMasterCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Not supported.
-        /// </summary>
-        public static string CreditCardNotSupportedCaption {
-            get {
-                return ResourceManager.GetString("CreditCardNotSupportedCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Card number.
-        /// </summary>
-        public static string CreditCardNumberCaption {
-            get {
-                return ResourceManager.GetString("CreditCardNumberCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Credit card type.
-        /// </summary>
-        public static string CreditCardTypeCaption {
-            get {
-                return ResourceManager.GetString("CreditCardTypeCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Visa.
-        /// </summary>
-        public static string CreditCardVisaCaption {
-            get {
-                return ResourceManager.GetString("CreditCardVisaCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating order for your registration....
-        /// </summary>
-        public static string CustomerOrderRegistrationMessage {
-            get {
-                return ResourceManager.GetString("CustomerOrderRegistrationMessage", resourceCulture);
             }
         }
         
@@ -831,15 +678,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string CustomerProfileCompanyInfoSectionCaption {
             get {
                 return ResourceManager.GetString("CustomerProfileCompanyInfoSectionCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Company Name.
-        /// </summary>
-        public static string CustomerProfileCompanyNameCaption {
-            get {
-                return ResourceManager.GetString("CustomerProfileCompanyNameCaption", resourceCulture);
             }
         }
         
@@ -916,47 +754,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Office 365.
-        /// </summary>
-        public static string CustomerProfileOffice365SectionCaption {
-            get {
-                return ResourceManager.GetString("CustomerProfileOffice365SectionCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string CustomerProfileOffice365UserNameCaption {
             get {
                 return ResourceManager.GetString("CustomerProfileOffice365UserNameCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password.
-        /// </summary>
-        public static string CustomerProfilePasswordCaption {
-            get {
-                return ResourceManager.GetString("CustomerProfilePasswordCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phone number.
-        /// </summary>
-        public static string CustomerProfilePhoneNumberCaption {
-            get {
-                return ResourceManager.GetString("CustomerProfilePhoneNumberCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Re-enter password.
-        /// </summary>
-        public static string CustomerProfileReEnterPasswordCaption {
-            get {
-                return ResourceManager.GetString("CustomerProfileReEnterPasswordCaption", resourceCulture);
             }
         }
         
@@ -988,7 +790,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registering and Creating order....
+        ///   Looks up a localized string similar to Registering customer....
         /// </summary>
         public static string CustomerRegistrationMessage {
             get {
@@ -1020,15 +822,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string CustomizationOfferListColumnCaption {
             get {
                 return ResourceManager.GetString("CustomizationOfferListColumnCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please enter a valid CVN.
-        /// </summary>
-        public static string CvnValidationMessage {
-            get {
-                return ResourceManager.GetString("CvnValidationMessage", resourceCulture);
             }
         }
         
@@ -1150,15 +943,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Features:.
-        /// </summary>
-        public static string DetailedFeaturesCaption {
-            get {
-                return ResourceManager.GetString("DetailedFeaturesCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The domain is not available. Please enter another domain prefix.
         /// </summary>
         public static string DomainNotAvailable {
@@ -1249,6 +1033,24 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while processing your request..
+        /// </summary>
+        public static string ErrorPageDetailsCaption {
+            get {
+                return ResourceManager.GetString("ErrorPageDetailsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorPageTitleCaption {
+            get {
+                return ResourceManager.GetString("ErrorPageTitleCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not get portal content.
         /// </summary>
         public static string FailedToLoadPortal {
@@ -1258,11 +1060,20 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to update partner offers persistence.
+        /// </summary>
+        public static string FailedToUpdatePartnerOffersStore {
+            get {
+                return ResourceManager.GetString("FailedToUpdatePartnerOffersStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features:.
         /// </summary>
-        public static string FeaturesListRowCaption {
+        public static string FeaturesCaption {
             get {
-                return ResourceManager.GetString("FeaturesListRowCaption", resourceCulture);
+                return ResourceManager.GetString("FeaturesCaption", resourceCulture);
             }
         }
         
@@ -1321,20 +1132,20 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help.
-        /// </summary>
-        public static string Help {
-            get {
-                return ResourceManager.GetString("Help", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Home page.
         /// </summary>
         public static string HomePage {
             get {
                 return ResourceManager.GetString("HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id must be a valid GUID.
+        /// </summary>
+        public static string IdMustBeAValidGUID {
+            get {
+                return ResourceManager.GetString("IdMustBeAValidGUID", resourceCulture);
             }
         }
         
@@ -1357,11 +1168,38 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid contact sales email address.
+        /// </summary>
+        public static string InvalidContactSalesEmailAddress {
+            get {
+                return ResourceManager.GetString("InvalidContactSalesEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a valid contact sales phone.
         /// </summary>
         public static string InvalidContactSalesPhone {
             get {
                 return ResourceManager.GetString("InvalidContactSalesPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid contact sales phone.
+        /// </summary>
+        public static string InvalidContactSalesPhoneExceptionMessage {
+            get {
+                return ResourceManager.GetString("InvalidContactSalesPhoneExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid contact us email address.
+        /// </summary>
+        public static string InvalidContactUsEmailAddress {
+            get {
+                return ResourceManager.GetString("InvalidContactUsEmailAddress", resourceCulture);
             }
         }
         
@@ -1375,11 +1213,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer Id is invalid..
+        ///   Looks up a localized string similar to Invalid contact us phone.
         /// </summary>
-        public static string InvalidCustomerIdErrorMessage {
+        public static string InvalidContactUsPhoneExceptionMessage {
             get {
-                return ResourceManager.GetString("InvalidCustomerIdErrorMessage", resourceCulture);
+                return ResourceManager.GetString("InvalidContactUsPhoneExceptionMessage", resourceCulture);
             }
         }
         
@@ -1393,11 +1231,29 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provide an image file type for the header image.
+        /// </summary>
+        public static string InvalidHeaderImageMessage {
+            get {
+                return ResourceManager.GetString("InvalidHeaderImageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid header image Uri. Please make sure the Uri is valid..
         /// </summary>
         public static string InvalidHeaderImageUri {
             get {
                 return ResourceManager.GetString("InvalidHeaderImageUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid header image URI uploaded.
+        /// </summary>
+        public static string InvalidHeaderImageUriMessage {
+            get {
+                return ResourceManager.GetString("InvalidHeaderImageUriMessage", resourceCulture);
             }
         }
         
@@ -1429,11 +1285,47 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid operation being performed..
+        /// </summary>
+        public static string InvalidOperationForOrderMessage {
+            get {
+                return ResourceManager.GetString("InvalidOperationForOrderMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provide an image file type for the organization logo.
+        /// </summary>
+        public static string InvalidOrganizationLogoFileTypeMessage {
+            get {
+                return ResourceManager.GetString("InvalidOrganizationLogoFileTypeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid organization logo Uri. Please make sure the Uri is valid..
         /// </summary>
         public static string InvalidOrganizationLogoUri {
             get {
                 return ResourceManager.GetString("InvalidOrganizationLogoUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid organization logo URI uploaded.
+        /// </summary>
+        public static string InvalidOrganizationLogoUriMessage {
+            get {
+                return ResourceManager.GetString("InvalidOrganizationLogoUriMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment mode is not supported.
+        /// </summary>
+        public static string InvalidPaymentModeErrorMessage {
+            get {
+                return ResourceManager.GetString("InvalidPaymentModeErrorMessage", resourceCulture);
             }
         }
         
@@ -1456,11 +1348,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language.
+        ///   Looks up a localized string similar to Invalid privacy agreement URI uploaded.
         /// </summary>
-        public static string Language {
+        public static string InvalidPrivacyUriMessage {
             get {
-                return ResourceManager.GetString("Language", resourceCulture);
+                return ResourceManager.GetString("InvalidPrivacyUriMessage", resourceCulture);
             }
         }
         
@@ -1470,33 +1362,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string Last {
             get {
                 return ResourceManager.GetString("Last", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Learn more.
-        /// </summary>
-        public static string LearnMore {
-            get {
-                return ResourceManager.GetString("LearnMore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to License.
-        /// </summary>
-        public static string LicenseCaption {
-            get {
-                return ResourceManager.GetString("LicenseCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to License:.
-        /// </summary>
-        public static string LicenseHeader {
-            get {
-                return ResourceManager.GetString("LicenseHeader", resourceCulture);
             }
         }
         
@@ -1537,6 +1402,24 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MicrosoftOfferId must be set.
+        /// </summary>
+        public static string MicrosoftOfferIdMustBeSet {
+            get {
+                return ResourceManager.GetString("MicrosoftOfferIdMustBeSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microsoft offer is not allowed to be updated. Create a new offer instead..
+        /// </summary>
+        public static string MicrosoftOfferImmutableErrorMessage {
+            get {
+                return ResourceManager.GetString("MicrosoftOfferImmutableErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Microsoft Offering.
         /// </summary>
         public static string MicrosoftOfferListColumnCaption {
@@ -1551,33 +1434,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string MicrosoftOfferRetrievalErrorMessage {
             get {
                 return ResourceManager.GetString("MicrosoftOfferRetrievalErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fees per month.
-        /// </summary>
-        public static string MonthlyFee {
-            get {
-                return ResourceManager.GetString("MonthlyFee", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Price per month.
-        /// </summary>
-        public static string MonthlyPrice {
-            get {
-                return ResourceManager.GetString("MonthlyPrice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to per user/month.
-        /// </summary>
-        public static string MonthPerUser {
-            get {
-                return ResourceManager.GetString("MonthPerUser", resourceCulture);
             }
         }
         
@@ -1600,20 +1456,38 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MOST POPULAR.
-        /// </summary>
-        public static string MostPopular {
-            get {
-                return ResourceManager.GetString("MostPopular", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Go back to: .
         /// </summary>
         public static string NavigateBackTo {
             get {
                 return ResourceManager.GetString("NavigateBackTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your registration order was successfully processed..
+        /// </summary>
+        public static string NewCustomerOrderSuccessMessage {
+            get {
+                return ResourceManager.GetString("NewCustomerOrderSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failure in receiving payment information. Please login and add subscriptions..
+        /// </summary>
+        public static string NewCustomerProcessOrderFailureReceivingPaymentMessage {
+            get {
+                return ResourceManager.GetString("NewCustomerProcessOrderFailureReceivingPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding subscriptions..
+        /// </summary>
+        public static string NewPurchaseOperationCaption {
+            get {
+                return ResourceManager.GetString("NewPurchaseOperationCaption", resourceCulture);
             }
         }
         
@@ -1641,6 +1515,15 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string NonAdminUnauthorizedMessage {
             get {
                 return ResourceManager.GetString("NonAdminUnauthorizedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order should have at least one subscription item..
+        /// </summary>
+        public static string NotEnoughItemsInOrderErrorMessage {
+            get {
+                return ResourceManager.GetString("NotEnoughItemsInOrderErrorMessage", resourceCulture);
             }
         }
         
@@ -1708,20 +1591,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describe a feature this offers gives.
+        ///   Looks up a localized string similar to Describe a feature this offer gives.
         /// </summary>
         public static string OfferFeaturePlaceHolder {
             get {
                 return ResourceManager.GetString("OfferFeaturePlaceHolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Example: $100 Per Year.
-        /// </summary>
-        public static string OfferLicensePlaceHolder {
-            get {
-                return ResourceManager.GetString("OfferLicensePlaceHolder", resourceCulture);
             }
         }
         
@@ -1731,6 +1605,24 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string OfferManuallyRenewable {
             get {
                 return ResourceManager.GetString("OfferManuallyRenewable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer not found.
+        /// </summary>
+        public static string OfferNotFound {
+            get {
+                return ResourceManager.GetString("OfferNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer price should be more than zero.
+        /// </summary>
+        public static string OfferPriceShouldBeMoreThanZero {
+            get {
+                return ResourceManager.GetString("OfferPriceShouldBeMoreThanZero", resourceCulture);
             }
         }
         
@@ -1825,6 +1717,24 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while processing order. Please retry later..
+        /// </summary>
+        public static string OrderFailureMessage {
+            get {
+                return ResourceManager.GetString("OrderFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failure in processing order. Please click done to try again..
+        /// </summary>
+        public static string OrderProcessingFailureNotification {
+            get {
+                return ResourceManager.GetString("OrderProcessingFailureNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Registration Error.
         /// </summary>
         public static string OrderRegistrationFailureMessage {
@@ -1884,24 +1794,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string OrganizationNameFieldSubText {
             get {
                 return ResourceManager.GetString("OrganizationNameFieldSubText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Other settings.
-        /// </summary>
-        public static string OtherSettingsConfigurationCaption {
-            get {
-                return ResourceManager.GetString("OtherSettingsConfigurationCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click to configure other settings.
-        /// </summary>
-        public static string OtherSettingsSectionTooltip {
-            get {
-                return ResourceManager.GetString("OtherSettingsSectionTooltip", resourceCulture);
             }
         }
         
@@ -1978,6 +1870,15 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failure in receiving payment information. Please click done to try again..
+        /// </summary>
+        public static string PaymentReceiptFailureNotification {
+            get {
+                return ResourceManager.GetString("PaymentReceiptFailureNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to configure your payment options.
         /// </summary>
         public static string PaymentSectionTooltip {
@@ -2041,7 +1942,16 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paypal.com.
+        ///   Looks up a localized string similar to We are unable to process your payment..
+        /// </summary>
+        public static string PayPalUnableToProcessPayment {
+            get {
+                return ResourceManager.GetString("PayPalUnableToProcessPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PayPal.com.
         /// </summary>
         public static string PayPalWebsiteCaption {
             get {
@@ -2052,9 +1962,9 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         /// <summary>
         ///   Looks up a localized string similar to Phone number.
         /// </summary>
-        public static string PhoneHeader {
+        public static string PhoneHeaderCaption {
             get {
-                return ResourceManager.GetString("PhoneHeader", resourceCulture);
+                return ResourceManager.GetString("PhoneHeaderCaption", resourceCulture);
             }
         }
         
@@ -2064,15 +1974,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string PhoneValidationMessage {
             get {
                 return ResourceManager.GetString("PhoneValidationMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pick your Offer.
-        /// </summary>
-        public static string PickOffer {
-            get {
-                return ResourceManager.GetString("PickOffer", resourceCulture);
             }
         }
         
@@ -2131,11 +2032,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Powered by Microsoft WebPortal.Net.
+        ///   Looks up a localized string similar to Preparing order and redirecting to payment gateway....
         /// </summary>
-        public static string PoweredBy {
+        public static string PreparingOrderAndRedirectingMessage {
             get {
-                return ResourceManager.GetString("PoweredBy", resourceCulture);
+                return ResourceManager.GetString("PreparingOrderAndRedirectingMessage", resourceCulture);
             }
         }
         
@@ -2185,11 +2086,29 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sample Corporation.
+        ///   Looks up a localized string similar to Payment information collected, processing order....
         /// </summary>
-        public static string ProductTitle {
+        public static string ProcessingOrderMessage {
             get {
-                return ResourceManager.GetString("ProductTitle", resourceCulture);
+                return ResourceManager.GetString("ProcessingOrderMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully received payment information. Processing order....
+        /// </summary>
+        public static string ProcessingOrderNotification {
+            get {
+                return ResourceManager.GetString("ProcessingOrderNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Processing Page..
+        /// </summary>
+        public static string ProcessOrderPageCaption {
+            get {
+                return ResourceManager.GetString("ProcessOrderPageCaption", resourceCulture);
             }
         }
         
@@ -2199,33 +2118,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         public static string ProratedPaymentTotal {
             get {
                 return ResourceManager.GetString("ProratedPaymentTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Quantity.
-        /// </summary>
-        public static string Quantity {
-            get {
-                return ResourceManager.GetString("Quantity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Amount paid on {CurrentDate}.
-        /// </summary>
-        public static string RegistrationConfirmAmountPaidOnCaption {
-            get {
-                return ResourceManager.GetString("RegistrationConfirmAmountPaidOnCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Annual commitment expires on {currentDate + 365}.
-        /// </summary>
-        public static string RegistrationConfirmAnnualCommitmentCaption {
-            get {
-                return ResourceManager.GetString("RegistrationConfirmAnnualCommitmentCaption", resourceCulture);
             }
         }
         
@@ -2293,20 +2185,29 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renewing subscription..
+        /// </summary>
+        public static string RenewOperationCaption {
+            get {
+                return ResourceManager.GetString("RenewOperationCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RenewSubscription.ExecuteAsync() Failed: {0}, SubscriptionId: {1}.
+        /// </summary>
+        public static string RenewSubscriptionFailedMessage {
+            get {
+                return ResourceManager.GetString("RenewSubscriptionFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Renew subscription.
         /// </summary>
         public static string RenewSubscriptionTitleCaption {
             get {
                 return ResourceManager.GetString("RenewSubscriptionTitleCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to retry.
-        /// </summary>
-        public static string Retry {
-            get {
-                return ResourceManager.GetString("Retry", resourceCulture);
             }
         }
         
@@ -2410,6 +2311,15 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shown in the Contact us section of the header.
+        /// </summary>
+        public static string ShowInContactUsHeaderCaption {
+            get {
+                return ResourceManager.GetString("ShowInContactUsHeaderCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign out.
         /// </summary>
         public static string Signout {
@@ -2419,29 +2329,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status.
-        /// </summary>
-        public static string Status {
-            get {
-                return ResourceManager.GetString("Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Subscripiton alias.
-        /// </summary>
-        public static string SubscripitonAlias {
-            get {
-                return ResourceManager.GetString("SubscripitonAlias", resourceCulture);
             }
         }
         
@@ -2491,15 +2383,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Annual commitment expires on.
-        /// </summary>
-        public static string SubscriptionSummaryAnnualCommitmentExpiryPrefixCaption {
-            get {
-                return ResourceManager.GetString("SubscriptionSummaryAnnualCommitmentExpiryPrefixCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Price Paid.
         /// </summary>
         public static string SubscriptionSummaryAnnualPricePrefixCaption {
@@ -2536,24 +2419,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add more licenses.
-        /// </summary>
-        public static string SubscriptionSummaryUpdateLinkCaption {
-            get {
-                return ResourceManager.GetString("SubscriptionSummaryUpdateLinkCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Summary:.
-        /// </summary>
-        public static string SummaryCaption {
-            get {
-                return ResourceManager.GetString("SummaryCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Summary:.
         /// </summary>
         public static string SummaryListRowCaption {
@@ -2563,29 +2428,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Support.
-        /// </summary>
-        public static string Support {
-            get {
-                return ResourceManager.GetString("Support", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Support email.
         /// </summary>
         public static string SupportEmailAddressHeader {
             get {
                 return ResourceManager.GetString("SupportEmailAddressHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Suspended.
-        /// </summary>
-        public static string SuspendedStatus {
-            get {
-                return ResourceManager.GetString("SuspendedStatus", resourceCulture);
             }
         }
         
@@ -2671,15 +2518,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string Update {
-            get {
-                return ResourceManager.GetString("Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Could not save payment information.
         /// </summary>
         public static string UpdatePaymentErrorMessage {
@@ -2707,15 +2545,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add more licenses.
-        /// </summary>
-        public static string UpdateSubscriptions {
-            get {
-                return ResourceManager.GetString("UpdateSubscriptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Updating offer.
         /// </summary>
         public static string UpdatingOfferMessage {
@@ -2725,38 +2554,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updating subscriptions....
-        /// </summary>
-        public static string UpdatingSubscriptionMessage {
-            get {
-                return ResourceManager.GetString("UpdatingSubscriptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please use an alternate card..
-        /// </summary>
-        public static string UseAlternateCardMessage {
-            get {
-                return ResourceManager.GetString("UseAlternateCardMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string UserLicencesCaption {
             get {
                 return ResourceManager.GetString("UserLicencesCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User name.
-        /// </summary>
-        public static string UserName {
-            get {
-                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

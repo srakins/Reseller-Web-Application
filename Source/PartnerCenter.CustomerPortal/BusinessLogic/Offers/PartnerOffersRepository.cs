@@ -109,7 +109,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Offers
             }
             else
             {
-                throw new PartnerDomainException(ErrorCode.PartnerOfferNotFound, "Offer not found");
+                throw new PartnerDomainException(ErrorCode.PartnerOfferNotFound, Resources.OfferNotFound);
             }
         }
 
@@ -202,13 +202,13 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Offers
 
             if (existingPartnerOffer == null)
             {
-                throw new PartnerDomainException(ErrorCode.PartnerOfferNotFound, "Offer not found");
+                throw new PartnerDomainException(ErrorCode.PartnerOfferNotFound, Resources.OfferNotFound);
             }
 
             if (existingPartnerOffer.MicrosoftOfferId != partnerOfferUpdate.MicrosoftOfferId)
             {
                 // we do not allow changing the Microsoft offer association since there may be existing purchases that purchased the original Microsoft offer
-                throw new PartnerDomainException(ErrorCode.MicrosoftOfferImmutable, "Microsoft offer is not allowed to be updated. Create a new offer instead.");
+                throw new PartnerDomainException(ErrorCode.MicrosoftOfferImmutable, Resources.MicrosoftOfferImmutableErrorMessage);
             }
 
             allPartnerOffers[allPartnerOffers.IndexOf(existingPartnerOffer)] = partnerOfferUpdate;
@@ -265,7 +265,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Offers
                     throw;
                 }
 
-                throw new PartnerDomainException(ErrorCode.PersistenceFailure, "Failed to update partner offers persistence", blobAccessProblem);
+                throw new PartnerDomainException(ErrorCode.PersistenceFailure, Resources.FailedToUpdatePartnerOffersStore, blobAccessProblem);
             }
             
             // return the normalized offers

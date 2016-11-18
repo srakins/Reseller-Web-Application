@@ -14,6 +14,7 @@
     <ProjectGuid>d0359f86-1aa6-4646-87a0-4ba66a5d35fd</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkIdentifier>Deployment</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>1.0</TargetFrameworkVersion>
     <PrepareForBuildDependsOn>

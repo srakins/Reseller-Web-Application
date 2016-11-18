@@ -41,7 +41,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Configuration
 
         /// <summary>
         /// The web portal AD tenant ID.
-        /// </summary>
+        /// </summary>        
         private const string WebPortalAadTenantID = "webPortal.AadTenantId";
 
         /// <summary>

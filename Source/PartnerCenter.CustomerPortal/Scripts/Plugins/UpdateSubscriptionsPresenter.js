@@ -8,9 +8,7 @@ Microsoft.WebPortal.UpdateSubscriptionsPresenter = function (webPortal, feature,
     /// <param name="feature">The feature for which this presenter is created.</param>
     /// <param name="subscriptionItem">The customer subscription item which is being edited.</param>
 
-    this.base.constructor.call(this, webPortal, feature, "Update Subscriptions", "/Template/UpdateSubscriptions/");
-    this.creditCardInputView = new Microsoft.WebPortal.Views.CreditCardInputView(webPortal, "#CreditCardInputContainer");
-
+    this.base.constructor.call(this, webPortal, feature, "Update Subscriptions", "/Template/UpdateSubscriptions/");   
     var self = this;
     self.isPosting = false;    
 
@@ -34,6 +32,12 @@ Microsoft.WebPortal.UpdateSubscriptionsPresenter = function (webPortal, feature,
         this.viewModel.PageTitle = self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.RenewSubscriptionTitleText;
     }
 
+    this.viewModel.OperationType = 1;
+    if (this.viewModel.isUpdateSubscription) {
+        this.viewModel.OperationType = Microsoft.WebPortal.CommerceOperationType.AdditionalSeatsPurchase; // AddSeats.
+    } else if (this.viewModel.isRenewSubscription) {
+        this.viewModel.OperationType = Microsoft.WebPortal.CommerceOperationType.Renewal; // RenewSubscription.
+    }
 
     this.viewModel.ShowProgress = ko.observable(true);
     this.viewModel.IsSet = ko.observable(false); 
@@ -43,47 +47,27 @@ Microsoft.WebPortal.UpdateSubscriptionsPresenter = function (webPortal, feature,
         webPortal.Journey.retract();
     }
 
-    this.onSubmitClicked = function () {
-        if (self.isPosting) {
-            return;
-        }
-
-        self.webPortal.Services.Notifications.clear();
-        var subscriptions = self.viewModel;        
-
-        if ($("#Form").valid()) {            
-            self.isPosting = true;
-            this.raiseOrder();
-        } else {
-            // the form is invalid            
-        }
-    }
-
-    this.raiseOrder = function () {
-        /// <summary>
-        /// Called to renew or add more seats to the subscription.  
-        /// </summary>
-        var thisNotification = new Microsoft.WebPortal.Services.Notification(Microsoft.WebPortal.Services.Notification.NotificationType.Progress, self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.UpdatingSubscriptionMessage);
+    this.onFormPostClicked = function () {
+        // create order payload & post to order api. 
+        // on success, order api will return a redirect uri for payment gateway 
+        //  -- redirect UX to payment gateway URI. 
+        
+        var thisNotification = new Microsoft.WebPortal.Services.Notification(Microsoft.WebPortal.Services.Notification.NotificationType.Progress, self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.PreparingOrderAndRedirectingMessage);
         self.webPortal.Services.Notifications.add(thisNotification);
 
-        if (self.viewModel.isUpdateSubscription)
-            apiUrl = "api/Subscription/AddSeats";
-
-        if (self.viewModel.isRenewSubscription)
-            apiUrl = "api/Subscription/Renew";
-
-        new Microsoft.WebPortal.Utilities.RetryableServerCall(this.webPortal.Helpers.ajaxCall(apiUrl, Microsoft.WebPortal.HttpMethod.Post, {
+        new Microsoft.WebPortal.Utilities.RetryableServerCall(this.webPortal.Helpers.ajaxCall("api/Order/Prepare", Microsoft.WebPortal.HttpMethod.Post, {
             Subscriptions: this.getSubscriptions(),
-            CreditCard: this.getCreditCardInfo()            
-        }, Microsoft.WebPortal.ContentType.Json, 120000), apiUrl, []).execute()        
-        .done(function () {
+            OperationType: self.viewModel.OperationType
+        }, Microsoft.WebPortal.ContentType.Json, 120000), "api/Order/Prepare", []).execute()
+        .done(function (result) {
             // hand it off to the subscriptions page.        
             thisNotification.dismiss();
-            self.webPortal.Journey.start(Microsoft.WebPortal.Feature.Subscriptions);
-        })        
-        .fail(function (result, status, error) {                        
+            // we need to now redirect to paypal based on the response from the API.             
+            window.location = result;
+        })
+        .fail(function (result, status, error) {
             thisNotification.type(Microsoft.WebPortal.Services.Notification.NotificationType.Error);
-            thisNotification.buttons([                
+            thisNotification.buttons([
                 Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.OK, self.webPortal.Resources.Strings.OK, function () {
                     thisNotification.dismiss();
                 })
@@ -99,32 +83,13 @@ Microsoft.WebPortal.UpdateSubscriptionsPresenter = function (webPortal, feature,
                     case Microsoft.WebPortal.ErrorCode.DownstreamServiceError:
                         thisNotification.message(self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.DownstreamErrorPrefix + errorPayload.Details.ErrorMessage);
                         break;
-                    case Microsoft.WebPortal.ErrorCode.CardCVNCheckFailed:
-                        thisNotification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.CardCVNFailedError);
-                        break;
-                    case Microsoft.WebPortal.ErrorCode.CardExpired:                        
-                        thisNotification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.CardExpiredError + self.webPortal.Resources.Strings.Plugins.CreditCardView.UseAlternateCardMessage);
-                        break;
-                    case Microsoft.WebPortal.ErrorCode.CardRefused:
-                        thisNotification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.CardRefusedError +self.webPortal.Resources.Strings.Plugins.CreditCardView.UseAlternateCardMessage);
-                        break;
-                    case Microsoft.WebPortal.ErrorCode.PaymentGatewayPaymentError:
-                        thisNotification.message(self.webPortal.Resources.Strings.Plugins.CreditCardView.PaymentGatewayErrorPrefix + self.webPortal.Resources.Strings.Plugins.CreditCardView.UseAlternateCardMessage);
-                        break;
-                    case Microsoft.WebPortal.ErrorCode.PaymentGatewayIdentityFailureDuringPayment:
-                    case Microsoft.WebPortal.ErrorCode.PaymentGatewayFailure:
-                        thisNotification.message(errorPayload.Details.ErrorMessage);
-                        break;
                     default:
-                        thisNotification.message(self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.OrderAddFailureMessage);
+                        thisNotification.message(self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.OrderUpdateFailureMessag);
                         break;
                 }
             } else {
-                thisNotification.message(self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.OrderUpdateFailureMessage);                
+                thisNotification.message(self.webPortal.Resources.Strings.Plugins.UpdateSubscriptionPage.OrderUpdateFailureMessage);
             }
-
-
-
         })
         .always(function () {
             self.isPosting = false;
@@ -135,28 +100,12 @@ Microsoft.WebPortal.UpdateSubscriptionsPresenter = function (webPortal, feature,
         var orders = [];
         
         orders.push({
-            SubscriptionId: self.viewModel.SubscriptionId,  // required for the add seats & renew calls.             
+            SubscriptionId: self.viewModel.SubscriptionId,  // required for the add seats & renew calls.                         
             Quantity: self.viewModel.Quantity()             // this.addSubscriptionsView.subscriptionsList.rows()[i].quantity()
         });
         
         return orders;
     }
-
-
-    this.getCreditCardInfo = function () {
-        var paymentCard = {
-            CreditCardType: this.creditCardInputView.viewModel.CardType(),
-            CardHolderFirstName: this.creditCardInputView.viewModel.CardHolderFirstName(),
-            CardHolderLastName: this.creditCardInputView.viewModel.CardHolderLastName(),
-            CreditCardNumber: this.creditCardInputView.viewModel.CardNumber(),
-            CreditCardExpiryMonth: this.creditCardInputView.viewModel.Month(),
-            CreditCardExpiryYear: this.creditCardInputView.viewModel.Year(),
-            CreditCardCvn: this.creditCardInputView.viewModel.CardCvn()
-        }
-
-        return paymentCard;
-    }
-
 }
 
 // inherit BasePresenter
@@ -174,8 +123,6 @@ Microsoft.WebPortal.UpdateSubscriptionsPresenter.prototype.onRender = function (
     /// </summary>
     
     ko.applyBindings(this, $("#Form")[0]);
-    // show credit card control after fetching subscriptions. 
-    this.creditCardInputView.render();    
 
     var self = this;
 
@@ -232,11 +179,6 @@ Microsoft.WebPortal.UpdateSubscriptionsPresenter.prototype.onRender = function (
 Microsoft.WebPortal.UpdateSubscriptionsPresenter.prototype.onShow = function () {
     /// <summary>
     /// Called when content is shown.
-    /// </summary>
-    
-    this.creditCardInputView.show();    
+    /// </summary>    
 }
-
-
-
 //@ sourceURL=UpdateSubscriptionsPresenter.js

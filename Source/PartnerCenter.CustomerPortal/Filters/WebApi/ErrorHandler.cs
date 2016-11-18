@@ -49,9 +49,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Filters.WebApi
                     case ErrorCode.DomainNotAvailable:
                     case ErrorCode.MaximumRequestSizeExceeded:
                     case ErrorCode.AlreadyExists:
-                    case ErrorCode.CardCVNCheckFailed:
-                    case ErrorCode.CardExpired:
-                    case ErrorCode.CardRefused:
                     case ErrorCode.PaymentGatewayPaymentError:
                     case ErrorCode.PaymentGatewayIdentityFailureDuringConfiguration: // treat this as a retryable bad input. 
                         errorResponseCode = HttpStatusCode.BadRequest;

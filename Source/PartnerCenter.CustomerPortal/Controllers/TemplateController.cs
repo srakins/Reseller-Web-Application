@@ -83,6 +83,17 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
         }
 
         /// <summary>
+        /// Serves the HTML template for the process order presenter.
+        /// </summary>
+        /// <returns>The HTML template for the process order presenter.</returns>
+        [HttpGet]        
+        [OutputCache(NoStore = true, Duration = 0)]
+        public ActionResult ProcessOrder()
+        {            
+            return this.PartialView();
+        }
+
+        /// <summary>
         /// Serves the HTML template for the customer account presenter.
         /// </summary>
         /// <returns>The HTML template for the customer account presenter.</returns>

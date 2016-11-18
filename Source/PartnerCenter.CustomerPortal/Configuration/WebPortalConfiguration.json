@@ -288,24 +288,6 @@
             ]
         },
         {
-            "Name": "CreditCardInputView",
-            "DefaultAssetVersion": "1.0",
-            "Assets": [
-                {
-                    "Version": "1.0",
-                    "JavaScript": [
-                        "~/Scripts/Plugins/Views/CreditCardInputView.js"
-                    ],
-                    "Css": [
-                        "~/Content/Styles/Plugins/CreditCardInput.css"
-                    ],
-                    "Templates": [
-                        "~/Views/Controls/CreditCardInput.cshtml"
-                    ]
-                }
-            ]
-        },
-        {
             "Name": "OfferTile",
             "DefaultAssetVersion": "1.0",
             "Assets": [
@@ -356,9 +338,10 @@
             "Assets": [
                 {
                     "Version": "1.0",
-                    "JavaScript": [
-                        "~/Scripts/Plugins/ErrorCode.js"
-                    ],
+                  "JavaScript": [
+                    "~/Scripts/Plugins/ErrorCode.js",
+                    "~/Scripts/Plugins/CommerceOperationType.js"
+                  ],
                     "Css": [
                         "~/Content/Styles/Plugins/Common.css",
                         "~/Content/Styles/Plugins/AddSubscriptions.css"
@@ -372,53 +355,69 @@
                 "DisplayName": "Home",
                 "Tile": "/Content/Images/Plugins/Tiles/home-tile.png",
                 "DefaultFeature": "Home",
-                "Features": [
+              "Features": [
+                {
+                  "Name": "Home",
+                  "DefaultAssetVersion": "1.0",
+                  "Assets": [
                     {
-                        "Name": "Home",
-                        "DefaultAssetVersion": "1.0",
-                        "Assets": [
-                            {
-                                "Version": "1.0",
-                                "JavaScript": [
-                                    "~/Scripts/Plugins/HomePagePresenter.js"
-                                ],
-                                "Css": [
-                                    "~/Content/Styles/Plugins/HomePage.css"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "Name": "CustomerRegistration",
-                        "DefaultAssetVersion": "1.0",
-                        "Assets": [
-                            {
-                                "Version": "1.0",
-                                "JavaScript": [
-                                    "~/Scripts/Plugins/CustomerRegistrationPresenter.js"
-                                ],
-                                "Css": [
-                                    "~/Content/Styles/Plugins/CustomerRegistration.css"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "Name": "RegistrationConfirmation",
-                        "DefaultAssetVersion": "1.0",
-                        "Assets": [
-                            {
-                                "Version": "1.0",
-                                "JavaScript": [
-                                    "~/Scripts/Plugins/RegistrationConfirmationPresenter.js"
-                                ],
-                                "Css": [
-                                    "~/Content/Styles/Plugins/RegistrationConfirmation.css"
-                                ]
-                            }
-                        ]
+                      "Version": "1.0",
+                      "JavaScript": [
+                        "~/Scripts/Plugins/HomePagePresenter.js"
+                      ],
+                      "Css": [
+                        "~/Content/Styles/Plugins/HomePage.css"
+                      ]
                     }
-                ]
+                  ]
+                },
+                {
+                  "Name": "CustomerRegistration",
+                  "DefaultAssetVersion": "1.0",
+                  "Assets": [
+                    {
+                      "Version": "1.0",
+                      "JavaScript": [
+                        "~/Scripts/Plugins/CustomerRegistrationPresenter.js"
+                      ],
+                      "Css": [
+                        "~/Content/Styles/Plugins/CustomerRegistration.css"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "RegistrationConfirmation",
+                  "DefaultAssetVersion": "1.0",
+                  "Assets": [
+                    {
+                      "Version": "1.0",
+                      "JavaScript": [
+                        "~/Scripts/Plugins/RegistrationConfirmationPresenter.js"
+                      ],
+                      "Css": [
+                        "~/Content/Styles/Plugins/RegistrationConfirmation.css"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "ProcessOrder",
+                  "DefaultAssetVersion": "1.0",
+                  "Assets": [
+                    {
+                      "Version": "1.0",
+                      "JavaScript": [
+                        "~/Scripts/Plugins/ProcessOrderPresenter.js"
+                      ],
+                      "Css": [
+                        "~/Content/Styles/Plugins/ProcessOrder.css"
+                      ]
+                    }
+                  ]
+                }
+
+              ]
             },
             {
                 "Name": "AdminConsole",

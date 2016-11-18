@@ -32,9 +32,15 @@ Microsoft.WebPortal.Core.UrlManager.prototype.onPortalInitialized = function () 
 
     if (window.location.hash && window.location.hash.length > 0) {
         // a hash is specified in the URL, extract the feature and any context object from the URL
-        var featureHash = window.location.hash.slice(1).split("?Context=");
+        var featureHash = window.location.hash.slice(1).split("?");        
         featureToInvoke = Microsoft.WebPortal.Feature[featureHash[0]] || featureToInvoke;
-        contextToPass = featureHash.length > 1 ? JSON.parse(decodeURI(featureHash[1])) : contextToPass;
+        try {
+            featureHash = window.location.hash.slice(1).split("?Context=");
+            contextToPass = featureHash.length > 1 ? JSON.parse(decodeURI(featureHash[1])) : contextToPass;
+        }
+        catch (e) {
+            contextToPass = null;
+        }
     }
 
     // start a journey with the feature we just determined
@@ -57,7 +63,14 @@ Microsoft.WebPortal.Core.UrlManager.prototype.onPortalInitialized = function () 
                 // could not retract, start a new journey with the feature name and context extracted from the URL
                 var queryStringIndex = window.location.hash.indexOf("?");
                 var featureName = window.location.hash.slice(1, queryStringIndex == -1 ? undefined : queryStringIndex);
-                var context = queryStringIndex == -1 ? null : JSON.parse(decodeURI(window.location.hash.slice(queryStringIndex)));
+                
+                var context = null;
+                try {
+                    context = queryStringIndex == -1 ? null : JSON.parse(decodeURI(window.location.hash.slice(queryStringIndex)));
+                }
+                catch (e) {
+                    context = null;
+                }
 
                 if (self.webPortal.Journey.journey()[self.webPortal.Journey.journey().length - 1].feature.name != featureName) {
                     self.webPortal.Journey.start(Microsoft.WebPortal.Feature[featureName], context);

@@ -102,21 +102,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Exceptions
         PaymentGatewayIdentityFailureDuringPayment,
 
         /// <summary>
-        /// Failure in payment gateway due to card refusal by financial institution.
-        /// </summary>
-        CardRefused,
-
-        /// <summary>
-        /// Failure in payment gateway due to use of an expired card during payment.
-        /// </summary>
-        CardExpired,
-        
-        /// <summary>
-        /// Failure in payment gateway due to invalid CVN.
-        /// </summary>
-        CardCVNCheckFailed,
-
-        /// <summary>
         /// Failure in payment gateway during payment.
         /// </summary>
         PaymentGatewayPaymentError

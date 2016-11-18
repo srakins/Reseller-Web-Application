@@ -166,7 +166,8 @@ Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = functio
 
             // aggregate the partner and microsoft offers
             for (var i in partnerOffers) {
-                self.viewModel.Offers.push({
+
+                var offerToPush = {
                     PartnerOffer: partnerOffers[i],
                     MicrosoftOffer: function () {
                         for (var j in self.microsoftOffers) {
@@ -174,23 +175,28 @@ Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = functio
                                 return self.microsoftOffers[j];
                             }
                         }
-
                         return null;
                     }()
-                });
+                };
 
-                self.viewModel.Offers[i].IsOfferAutoRenewableCaption = self.viewModel.Offers[i].MicrosoftOffer.Offer.IsAutoRenewable ?
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAutomaticallyRenewable :
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferManuallyRenewable;
+                // TODO :: Handle Microsoft offer being pulled back due to EOL.
+                // Temporary fix - Do not display this partner offer for further configuration. Need a better way to handle this. 
+                if (offerToPush.MicrosoftOffer != null) {                    
+                    offerToPush.IsOfferAutoRenewableCaption = offerToPush.MicrosoftOffer.Offer.IsAutoRenewable ?
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAutomaticallyRenewable :
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferManuallyRenewable;
 
-                self.viewModel.Offers[i].IsAvailableForPurchaseCaption = self.viewModel.Offers[i].MicrosoftOffer.Offer.IsAvailableForPurchase ?
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAvailableForPurchase :
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferUnavailableForPurchase;
+                    offerToPush.IsAvailableForPurchaseCaption = offerToPush.MicrosoftOffer.Offer.IsAvailableForPurchase ?
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAvailableForPurchase :
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferUnavailableForPurchase;
 
-                self.viewModel.Offers[i].AllowedQuantityCaption = self.viewModel.Offers[i].MicrosoftOffer.Offer.MinimumQuantity +
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.To +
-                    self.viewModel.Offers[i].MicrosoftOffer.Offer.MaximumQuantity +
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.Seats;
+                    offerToPush.AllowedQuantityCaption = offerToPush.MicrosoftOffer.Offer.MinimumQuantity +
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.To +
+                        offerToPush.MicrosoftOffer.Offer.MaximumQuantity +
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.Seats;
+
+                    self.viewModel.Offers.push(offerToPush);
+                }                                                
             }
 
             self.viewModel.offerList.set(self.viewModel.Offers);
@@ -246,7 +252,8 @@ Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = functi
 
             // aggregate the partner and microsoft offers
             for (var i in partnerOffers) {
-                self.viewModel.Offers.push({
+
+                var offerToPush = {
                     PartnerOffer: partnerOffers[i],
                     MicrosoftOffer: function () {
                         for (var j in microsoftOffers) {
@@ -254,23 +261,28 @@ Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = functi
                                 return microsoftOffers[j];
                             }
                         }
-
                         return null;
                     }()
-                });
+                };
 
-                self.viewModel.Offers[i].IsOfferAutoRenewableCaption = self.viewModel.Offers[i].MicrosoftOffer.Offer.IsAutoRenewable ?
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAutomaticallyRenewable :
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferManuallyRenewable;
+                // TODO :: Handle Microsoft offer being pulled back due to EOL.
+                // Temporary fix - Do not display this partner offer for further configuration. Need a better way to handle this. 
+                if (offerToPush.MicrosoftOffer != null) {                    
+                    offerToPush.IsOfferAutoRenewableCaption = offerToPush.MicrosoftOffer.Offer.IsAutoRenewable ?
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAutomaticallyRenewable :
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferManuallyRenewable;
 
-                self.viewModel.Offers[i].IsAvailableForPurchaseCaption = self.viewModel.Offers[i].MicrosoftOffer.Offer.IsAvailableForPurchase ?
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAvailableForPurchase :
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferUnavailableForPurchase;
+                    offerToPush.IsAvailableForPurchaseCaption = offerToPush.MicrosoftOffer.Offer.IsAvailableForPurchase ?
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAvailableForPurchase :
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferUnavailableForPurchase;
 
-                self.viewModel.Offers[i].AllowedQuantityCaption = self.viewModel.Offers[i].MicrosoftOffer.Offer.MinimumQuantity +
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.To +
-                    self.viewModel.Offers[i].MicrosoftOffer.Offer.MaximumQuantity +
-                    self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.Seats;
+                    offerToPush.AllowedQuantityCaption = offerToPush.MicrosoftOffer.Offer.MinimumQuantity +
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.To +
+                        offerToPush.MicrosoftOffer.Offer.MaximumQuantity +
+                        self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.Seats;
+
+                    self.viewModel.Offers.push(offerToPush);
+                }                                                
             }
 
             self.viewModel.offerList.set(self.viewModel.Offers);

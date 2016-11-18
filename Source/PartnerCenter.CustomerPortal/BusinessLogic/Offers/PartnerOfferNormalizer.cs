@@ -29,19 +29,19 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Offers
 
             if (!Guid.TryParse(partnerOffer.Id, out offerId))
             {
-                throw new PartnerDomainException(ErrorCode.InvalidInput, "Id must be a valid GUID").AddDetail("Field", "Id");
+                throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.IdMustBeAValidGUID).AddDetail("Field", "Id");
             }
 
             if (string.IsNullOrWhiteSpace(partnerOffer.MicrosoftOfferId))
             {
-                throw new PartnerDomainException(ErrorCode.InvalidInput, "MicrosoftOfferId must be set").AddDetail("Field", "MicrosoftOfferId");
+                throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.MicrosoftOfferIdMustBeSet).AddDetail("Field", "MicrosoftOfferId");
             }
 
             partnerOffer.Title.AssertNotEmpty("Offer title");
             
             if (partnerOffer.Price <= 0)
             {
-                throw new PartnerDomainException(ErrorCode.InvalidInput, "Offer price should be more than zero").AddDetail("Field", "Price");
+                throw new PartnerDomainException(ErrorCode.InvalidInput, Resources.OfferPriceShouldBeMoreThanZero).AddDetail("Field", "Price");
             }
 
             partnerOffer.Features = PartnerOfferNormalizer.CleanupEmptyEntries(partnerOffer.Features);

@@ -15,7 +15,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
     using Exceptions;
     using Models;
     using PayPal;
-    using PayPal.Api;    
+    using PayPal.Api;
 
     /// <summary>
     /// PayPal payment gateway implementation.
@@ -23,9 +23,14 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
     public class PayPalGateway : DomainObject, IPaymentGateway
     {
         /// <summary>
-        /// Maintains the credit card against which the payment is being managed. 
+        /// Maintains the payer id for the payment gateway. 
         /// </summary>
-        private readonly Models.PaymentCard creditCard;
+        private readonly string payerId;
+
+        /// <summary>
+        /// Maintains the payment id for the payment gateway.
+        /// </summary>
+        private readonly string paymentId;
 
         /// <summary>
         /// Maintains the description for this payment. 
@@ -35,22 +40,31 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
         /// <summary>
         /// Initializes a new instance of the <see cref="PayPalGateway" /> class. 
         /// </summary>
-        /// <param name="applicationDomain">The ApplicationDomain</param>
-        /// <param name="paymentCard">The Payment Card used in this commerce operation.</param>
+        /// <param name="applicationDomain">The ApplicationDomain</param>        
         /// <param name="description">The description which will be added to the Payment Card authorization call.</param>
-        public PayPalGateway(ApplicationDomain applicationDomain, Models.PaymentCard paymentCard, string description) : base(applicationDomain)
-        {
-            paymentCard.AssertNotNull(nameof(paymentCard));
+        public PayPalGateway(ApplicationDomain applicationDomain, string description) : base(applicationDomain)
+        {            
             description.AssertNotEmpty(nameof(description));
-
-            // clean up credit card number input. 
-            string cardNumber = paymentCard.CreditCardNumber;
-            cardNumber = cardNumber.Replace(" ", string.Empty); // remove empty spaces in the string. 
-            cardNumber = cardNumber.Replace("-", string.Empty); // remove dashes.
-            paymentCard.CreditCardNumber = cardNumber;
-
-            this.creditCard = paymentCard;
             this.paymentDescription = description;
+
+            this.payerId = string.Empty;
+            this.paymentId = string.Empty;            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PayPalGateway" /> class.
+        /// </summary>
+        /// <param name="applicationDomain">The ApplicationDomain</param>        
+        /// <param name="payerId">The Payer Id.</param>
+        /// <param name="paymentId">The Payment Id.</param>
+        public PayPalGateway(ApplicationDomain applicationDomain, string payerId, string paymentId) : base(applicationDomain)
+        {
+            payerId.AssertNotEmpty(nameof(payerId));
+            paymentId.AssertNotEmpty(nameof(paymentId));            
+
+            this.payerId = payerId;
+            this.paymentId = paymentId;
+            this.paymentDescription = string.Empty;            
         }
 
         /// <summary>
@@ -102,91 +116,183 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
         }
 
         /// <summary>
-        /// Authorizes a payment with PayPal. Ensures the payment is valid.
+        /// Creates Web Experience profile using portal branding and payment configuration. 
         /// </summary>
-        /// <param name="amount">The amount to charge.</param>
-        /// <returns>An authorization code.</returns>
-        public async Task<string> AuthorizeAsync(decimal amount)
+        /// <param name="paymentConfig">The Payment configuration.</param>
+        /// <param name="brandConfig">The branding configuration.</param>
+        /// <param name="countryIso2Code">The locale code used by the web experience profile. Example-US.</param>
+        /// <returns>The created web experience profile id.</returns>
+        public static string CreateWebExperienceProfile(PaymentConfiguration paymentConfig, BrandingConfiguration brandConfig, string countryIso2Code)
         {
-            amount.AssertPositive(nameof(amount));
-
-            CreditCard customerCard = new CreditCard();
-            customerCard.first_name = this.creditCard.CardHolderFirstName;
-            customerCard.last_name = this.creditCard.CardHolderLastName;
-            customerCard.expire_month = this.creditCard.CreditCardExpiryMonth;
-            customerCard.expire_year = this.creditCard.CreditCardExpiryYear;
-            customerCard.number = this.creditCard.CreditCardNumber;
-            customerCard.type = this.creditCard.CreditCardType;
-            customerCard.cvv2 = this.creditCard.CreditCardCvn;
-
-            //// PayPal expects the following in the amount (string)input during authorization... 
-            //// There are a few currencies where decimals are not supported. For future consideration. 
-            //// Currency amount must be 
-            ////      non - negative number, 
-            ////      may optionally contain exactly 2 decimal places separated by '.', 
-            ////      optional thousands separator ',', 
-            ////      limited to 7 digits before the decimal point], 
-            ////      Conversion needs to be done since Commerce layer treats it as a decimal while PayPal expects a string. 
-            ////      "12.0"(ie - without the additional zero...expected would be "12.00"). https://msdn.microsoft.com/en-us/library/dwhawy9k(v=vs.110).aspx#FFormatString             
-
-            string currency = this.ApplicationDomain.PortalLocalization.CurrencyCode;
-            string orderAmt = amount.ToString("F", CultureInfo.InvariantCulture);             
-
-            // Create Payment Object. 
-            var payment = new Payment()
-            {
-                // Intent is to Authroize this Payment. 
-                intent = "authorize",                           // required
-                // Payer Object (Required)
-                // A resource representing a Payer that funds a payment. Use the List of `FundingInstrument` and the Payment Method as 'credit_card'
-                payer = new Payer()
-                {
-                    payment_method = "credit_card",              // required                 
-                    // funding instruments object []. 
-                    // The Payment creation API requires a list of
-                    // FundingInstrument; add the created `FundingInstrument` to a List
-                    funding_instruments = new List<FundingInstrument>()
-                    {
-                        // A resource representing a Payeer's funding instrument. and the `CreditCardDetails`
-                        new FundingInstrument()
-                        {
-                            // A resource representing a credit card that can be used to fund a payment.
-                            credit_card = customerCard
-                        }
-                    },
-                },
-                
-                // transactions object []. (Required)
-                // The Payment creation API requires a list of transactions; add the created `Transaction` to a List
-                transactions = new List<Transaction>()
-                {                                      
-                    // A transaction defines the contract of a payment - what is the payment for and who is fulfilling it. Transaction is created with a `Payee` and `Amount` types                    
-                    new Transaction()
-                    {
-                        // Let's you specify a payment amount.
-                        amount = new Amount()
-                        {                            
-                            currency = currency,    // Required
-                            total = orderAmt        // Required
-                        },
-                        description = this.paymentDescription                        
-                    }                    
-                }                                                                
-            };
-
-            // Create a payment by posting to the APIService using a valid APIContext
-            // Retrieve an Authorization Id by making a Payment with intent as 'authorize' and parsing through the Payment object
-            Payment createdPayment = null;
             try
             {
-                createdPayment = payment.Create(await this.GetAPIContext());
+                Dictionary<string, string> configMap = new Dictionary<string, string>();
+                configMap.Add("clientId", paymentConfig.ClientId);
+                configMap.Add("clientSecret", paymentConfig.ClientSecret);
+                configMap.Add("mode", paymentConfig.AccountType);
+                configMap.Add("connectionTimeout", "120000");
+
+                string accessToken = new OAuthTokenCredential(configMap).GetAccessToken();
+                var apiContext = new APIContext(accessToken);
+                apiContext.Config = configMap;
+
+                // Pickup logo & brand name from branding configuration.                  
+                // create the web experience profile.                 
+                var profile = new WebProfile
+                {
+                    name = Guid.NewGuid().ToString(),
+                    presentation = new Presentation
+                    {
+                        brand_name = brandConfig.OrganizationName,                        
+                        logo_image = brandConfig.HeaderImage.ToString(),
+                        locale_code = countryIso2Code
+                    },
+                    input_fields = new InputFields()
+                    {
+                        address_override = 1,
+                        allow_note = false,
+                        no_shipping = 1 
+                    },
+                    flow_config = new FlowConfig()
+                    {
+                        landing_page_type = "billing"
+                    }
+                };
+
+                var createdProfile = profile.Create(apiContext);                
+                return createdProfile.id;
+            }
+            catch (PayPalException paypalException)
+            {
+                if (paypalException is IdentityException)
+                {
+                    // thrown when API Context couldn't be setup. 
+                    IdentityException identityFailure = paypalException as IdentityException;
+                    IdentityError failureDetails = identityFailure.Details;
+                    if (failureDetails != null && failureDetails.error.ToLower() == "invalid_client")
+                    {
+                        throw new PartnerDomainException(ErrorCode.PaymentGatewayIdentityFailureDuringConfiguration).AddDetail("ErrorMessage", Resources.PaymentGatewayIdentityFailureDuringConfiguration);
+                    }
+                }
+
+                // if this is not an identity exception rather some other issue. 
+                throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", paypalException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Creates a payment transaction and returns the PayPal generated payment URL. 
+        /// </summary>
+        /// <param name="redirectUrl">The redirect url for PayPal callback to web store portal.</param>                
+        /// <param name="order">The order details for which payment needs to be made.</param>        
+        /// <returns>Payment URL from PayPal.</returns>
+        public async Task<string> GeneratePaymentUriAsync(string redirectUrl, OrderViewModel order)
+        {
+            string paypalRedirectUrl = string.Empty;
+
+            redirectUrl.AssertNotEmpty(nameof(redirectUrl));
+            order.AssertNotNull(nameof(order));
+
+            APIContext apiContext = await this.GetAPIContextAsync();
+            decimal paymentTotal = 0;
+
+            // Create itemlist and add item objects to it.
+            var itemList = new ItemList() { items = new List<Item>() };
+            foreach (var subscriptionItem in order.Subscriptions)
+            {
+                itemList.items.Add(new Item()
+                {
+                    name = subscriptionItem.SubscriptionName,
+                    description = this.paymentDescription,
+                    sku = subscriptionItem.SubscriptionId,
+                    currency = this.ApplicationDomain.PortalLocalization.CurrencyCode,
+                    price = subscriptionItem.SeatPrice.ToString("F", CultureInfo.InvariantCulture), // TODO :: Loc. Validate for other cultures. 
+                    quantity = subscriptionItem.Quantity.ToString()
+                });
+                paymentTotal += Math.Round(subscriptionItem.Quantity * subscriptionItem.SeatPrice, 2);
+            }
+
+            string webExperienceId = string.Empty;
+            apiContext.Config.TryGetValue("WebExperienceProfileId", out webExperienceId);
+
+            Payment payment = new Payment()
+            {
+                intent = "authorize",
+                payer = new Payer() { payment_method = "paypal" },
+                experience_profile_id = webExperienceId, // if null its ok, PayPal will pick up the default settings based on PayPal client configuration.
+                transactions = new List<Transaction>()
+                {
+                    new Transaction()
+                    {
+                        description = this.paymentDescription,
+                        custom = string.Format(CultureInfo.InvariantCulture, "{0}#{1}", order.CustomerId, order.OperationType.ToString()),
+                        item_list = itemList,
+                        amount = new Amount()
+                        {
+                            currency = this.ApplicationDomain.PortalLocalization.CurrencyCode,
+                            total = paymentTotal.ToString("F", CultureInfo.InvariantCulture) // TODO :: Loc. Validate for other cultures. 
+                        }
+                    }
+                },
+                redirect_urls = new RedirectUrls()
+                {
+                    return_url = redirectUrl + "&payment=success",
+                    cancel_url = redirectUrl + "&payment=failure"
+                }
+            };
+
+            try
+            {
+                // CreatePayment function gives us the payment approval url
+                // on which payer is redirected for paypal acccount payment
+                var createdPayment = payment.Create(apiContext);
+
+                // get links returned from paypal in response to Create function call
+                var links = createdPayment.links.GetEnumerator();
+                while (links.MoveNext())
+                {
+                    Links lnk = links.Current;
+                    if (lnk.rel.ToLower().Trim().Equals("approval_url"))
+                    {
+                        paypalRedirectUrl = lnk.href;
+                    }
+                }
+
+                return await Task.FromResult(paypalRedirectUrl);
             }
             catch (PayPalException ex)
             {
                 this.ParsePayPalException(ex);
-            }              
+            }
 
-            return await Task.FromResult(createdPayment.transactions[0].related_resources[0].authorization.id);
+            return await Task.FromResult(string.Empty);
+        }
+
+        /// <summary>
+        /// Executes a PayPal payment.
+        /// </summary>
+        /// <returns>Capture string id.</returns>
+        public async Task<string> ExecutePaymentAsync()
+        {
+            APIContext apiContext = await this.GetAPIContextAsync();
+            try
+            {
+                Payment payment = new Payment() { id = this.paymentId };
+                var paymentExecution = new PaymentExecution() { payer_id = this.payerId };
+                var paymentResult = payment.Execute(apiContext, paymentExecution);
+
+                if (paymentResult.state.ToLowerInvariant() == "approved")
+                {
+                    string authorizationCode = paymentResult.transactions[0].related_resources[0].authorization.id;
+                    return await Task.FromResult(authorizationCode);
+                }
+            }
+            catch (PayPalException ex)
+            {
+                this.ParsePayPalException(ex);
+            }
+
+            return await Task.FromResult(string.Empty);
         }
 
         /// <summary>
@@ -202,7 +308,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
 
             authorizationCode.AssertNotEmpty(nameof(authorizationCode));
             
-            APIContext apiContext = await this.GetAPIContext();
+            APIContext apiContext = await this.GetAPIContextAsync();
 
             // given the authorizationId. Lookup the authorization to find the amount. 
             try
@@ -243,7 +349,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
             // given the authorizationId string... Lookup the authorization to void it. 
             try
             {                
-                APIContext apiContext = await this.GetAPIContext();
+                APIContext apiContext = await this.GetAPIContextAsync();
                 Authorization cardAuthorization = Authorization.Get(apiContext, authorizationCode);
                 cardAuthorization.Void(apiContext);
                 await Task.FromResult(string.Empty);
@@ -255,10 +361,59 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
         }
 
         /// <summary>
+        /// Retrieves the Order from a payment transaction.
+        /// </summary>
+        /// <returns>The Order for which payment was made.</returns>
+        public async Task<OrderViewModel> GetOrderDetailsFromPaymentAsync()
+        {
+            OrderViewModel orderFromPayment = null;   
+            APIContext apiContext = await this.GetAPIContextAsync();
+
+            try
+            {
+                // the get will retrieve the payment information. iterate the items in the transaction collection to extract details.            
+                Payment paymentDetails = Payment.Get(apiContext, this.paymentId);
+                orderFromPayment = new OrderViewModel();                
+                List<OrderSubscriptionItemViewModel> orderSubscriptions = new List<OrderSubscriptionItemViewModel>();
+
+                if (paymentDetails.transactions.Count > 0)
+                {
+                    string customData = paymentDetails.transactions[0].custom;
+
+                    // parse out the customer Id & operation type from customData.
+                    string[] customDataArray = customData.Split("#".ToCharArray());
+                    if (customDataArray.Length == 2)
+                    {
+                        orderFromPayment.CustomerId = customDataArray[0];
+                        orderFromPayment.OperationType = (CommerceOperationType)Enum.Parse(typeof(CommerceOperationType), customDataArray[1], true);
+                    }
+
+                    foreach (var paymentTransactionItem in paymentDetails.transactions[0].item_list.items)
+                    {
+                        orderSubscriptions.Add(new OrderSubscriptionItemViewModel()
+                        {   
+                            SubscriptionId = paymentTransactionItem.sku,
+                            OfferId = paymentTransactionItem.sku,
+                            Quantity = Convert.ToInt32(paymentTransactionItem.quantity, CultureInfo.InvariantCulture) // TODO :: Loc. Validate for other cultures. 
+                        });
+                    }
+                }
+
+                orderFromPayment.Subscriptions = orderSubscriptions;
+            }
+            catch (PayPalException ex)
+            {
+                this.ParsePayPalException(ex);
+            }
+
+            return await Task.FromResult(orderFromPayment);
+        }
+
+        /// <summary>
         /// Retrieves the API Context for PayPal. 
         /// </summary>
         /// <returns>PayPal APIContext</returns>
-        private async Task<APIContext> GetAPIContext()
+        private async Task<APIContext> GetAPIContextAsync()
         {
             //// The GetAccessToken() of the SDK Returns the currently cached access token. 
             //// If no access token was previously cached, or if the current access token is expired, then a new one is generated and returned. 
@@ -271,6 +426,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
             configMap.Add("clientId", paymentConfig.ClientId);
             configMap.Add("clientSecret", paymentConfig.ClientSecret);
             configMap.Add("mode", paymentConfig.AccountType);
+            configMap.Add("WebExperienceProfileId", paymentConfig.WebExperienceProfileId);
             configMap.Add("connectionTimeout", "120000");
 
             string accessToken = new OAuthTokenCredential(configMap).GetAccessToken();
@@ -292,7 +448,8 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
                 // Get the details of this exception with ex.Details and format the error message in the form of "We are unable to process your payment –  {Errormessage} :: [err1, err2, .., errN]".                
                 StringBuilder errorString = new StringBuilder();
                 errorString.Append(Resources.PaymentGatewayErrorPrefix);                
-                
+
+                // build error string for errors returned from financial institutions.
                 if (pe.Details != null)
                 {
                     string errorName = pe.Details.name.ToUpper();
@@ -302,20 +459,6 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
                         errorString.Append(pe.Details.message);
                         throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", errorString.ToString());
                     }                        
-
-                    // build error string for errors returned from financial institutions.
-                    if (errorName.Contains("CREDIT_CARD_REFUSED"))
-                    {
-                        throw new PartnerDomainException(ErrorCode.CardRefused);                        
-                    }
-                    else if (errorName.Contains("EXPIRED_CREDIT_CARD"))
-                    {
-                        throw new PartnerDomainException(ErrorCode.CardExpired);
-                    }
-                    else if (errorName.Contains("CREDIT_CARD_CVV_CHECK_FAILED"))
-                    {                        
-                        throw new PartnerDomainException(ErrorCode.CardCVNCheckFailed);
-                    }
                     else if (errorName.Contains("UNKNOWN_ERROR"))
                     {                        
                         throw new PartnerDomainException(ErrorCode.PaymentGatewayPaymentError);
@@ -339,8 +482,8 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.BusinessLogic.Commerce.Pa
                         errorString.Replace(',', ']', errorString.Length - 2, 2); // remove the last comma and replace it with ]. 
                     }
                     else
-                    {
-                        errorString.Append(Resources.UseAlternateCardMessage);
+                    {                        
+                        errorString.Append(Resources.PayPalUnableToProcessPayment);
                     }
                 }
 
