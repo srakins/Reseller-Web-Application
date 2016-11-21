@@ -520,7 +520,7 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact us1.
+        ///   Looks up a localized string similar to Contact us.
         /// </summary>
         public static string ContactUs {
             get {
