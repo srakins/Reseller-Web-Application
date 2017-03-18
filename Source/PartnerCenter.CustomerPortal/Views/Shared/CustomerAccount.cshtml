@@ -23,9 +23,7 @@
                         <td>
                             <label>@Resources.LicenseStatusCaption</label>                                                        
                         </td>
-                        <td class="right-aligned">
-                            <label>@Resources.LicenseCreatedDateCaption</label>                                                        
-                        </td>
+                        
                     </tr>
                     <!-- ko foreach: viewModel.Licenses -->
                     <tr class="SubscriptionRow">
@@ -39,9 +37,7 @@
                         <td>
                             <label data-bind="text: $data.Status"></label>
                         </td>
-                        <td class="right-aligned">
-                            <label data-bind="text: $data.CreationDate"></label>
-                        </td>
+                        
                     </tr>
                     <!-- /ko -->
                 </tbody>
