@@ -1940,7 +1940,29 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal {
                 return ResourceManager.GetString("LicenseQuantityCaption", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string LicenseUsageCaption
+        {
+            get
+            {
+                return "Current Usage";
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string LicenseBillingStart
+        {
+            get
+            {
+                return "Billing Start Date";
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>

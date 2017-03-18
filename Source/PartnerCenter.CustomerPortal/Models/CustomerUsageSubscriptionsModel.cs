@@ -22,6 +22,11 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the usage for this Subscription
+        /// </summary>
+        public string Usage { get; set; }
+
+        /// <summary>
         /// Gets or sets the customer license status like None, Active, Suspended or Deleted
         /// </summary>
         public string Status { get; set; }
@@ -30,5 +35,10 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Models
         /// Gets or sets the license creation date. 
         /// </summary>
         public string CreationDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the billing start date. 
+        /// </summary>
+        public string BillingStartDate { get; set; }
     }
 }

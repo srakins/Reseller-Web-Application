@@ -64,10 +64,27 @@ namespace Microsoft.Store.PartnerCenter.CustomerPortal.Controllers
                 select new CustomerUsageSubscriptionsModel()
                 {                                                                          
                     Id = item.Id,
-                    Name = item.FriendlyName,                                        
+                    Name = item.FriendlyName,                             
                     Status = this.GetStatusType(item.Status),
                     CreationDate = item.CreationDate.ToString("d", responseCulture)
                 }).ToList();
+
+            ////Loop through each usage subscription and find its cost * markup
+            foreach (CustomerUsageSubscriptionsModel usageSubscription in allUsageSubscriptionsOfCustomer)
+            {
+                string selectedSubscriptionId = usageSubscription.Id as string;
+                var usageRecords = localeSpecificPartnerCenterClient.Customers.ById(clientCustomerId).Subscriptions.ById(selectedSubscriptionId).UsageRecords.Resources.Get();
+                decimal usage = new decimal(0);
+                foreach (var record in usageRecords.Items)
+                {
+                    usage += record.TotalCost;
+                }
+                
+                decimal markup = new decimal(1.20);
+                usageSubscription.Usage = "$" + System.Math.Round(usage * markup, 2).ToString();
+                var usageSummary = localeSpecificPartnerCenterClient.Customers.ById(clientCustomerId).Subscriptions.ById(selectedSubscriptionId).UsageSummary.Get();
+                usageSubscription.BillingStartDate = usageSummary.BillingStartDate.ToString("MM/dd/yyyy");
+            }
 
             return new CustomerViewModel()
             {

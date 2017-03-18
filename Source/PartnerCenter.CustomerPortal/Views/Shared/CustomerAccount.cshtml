@@ -66,10 +66,13 @@
                             <label>@Resources.LicenseNameCaption</label>
                         </td>
                         <td>
+                            <label>@Resources.LicenseUsageCaption</label>
+                        </td>
+                        <td>
                             <label>@Resources.LicenseStatusCaption</label>
                         </td>
                         <td class="right-aligned">
-                            <label>@Resources.LicenseCreatedDateCaption</label>
+                            <label>@Resources.LicenseBillingStart</label>
                         </td>
                     </tr>
                     <!-- ko foreach: viewModel.UsageSubscriptions -->
@@ -79,10 +82,13 @@
                             <label data-bind="text: ' - ' + $data.Id"></label>
                         </td>
                         <td>
+                            <label data-bind="text: $data.Usage"></label>
+                        </td>
+                        <td>
                             <label data-bind="text: $data.Status"></label>
                         </td>
                         <td class="right-aligned">
-                            <label data-bind="text: $data.CreationDate"></label>
+                            <label data-bind="text: $data.BillingStartDate"></label>
                         </td>
                     </tr>
                     <!-- /ko -->
