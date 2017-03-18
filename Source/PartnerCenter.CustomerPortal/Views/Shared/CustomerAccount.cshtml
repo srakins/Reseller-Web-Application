@@ -58,6 +58,9 @@
             <table class="subscriptions-table" cellspacing="1" cellpadding="5">
                 <tbody>
                     <tr class="medium-text">
+                        <td class="right-aligned">
+                            <label>@Resources.LicenseBillingStart</label>
+                        </td>
                         <td>
                             <label>@Resources.LicenseNameCaption</label>
                         </td>
@@ -67,12 +70,12 @@
                         <td>
                             <label>@Resources.LicenseStatusCaption</label>
                         </td>
-                        <td class="right-aligned">
-                            <label>@Resources.LicenseBillingStart</label>
-                        </td>
-                    </tr>
+                                           </tr>
                     <!-- ko foreach: viewModel.UsageSubscriptions -->
                     <tr class="SubscriptionRow">
+                        <td class="right-aligned">
+                            <label data-bind="text: $data.BillingStartDate"></label>
+                        </td>
                         <td>
                             <label class="abovemedium-text" data-bind="text: $data.Name"></label>
                             <label data-bind="text: ' - ' + $data.Id"></label>
@@ -83,9 +86,7 @@
                         <td>
                             <label data-bind="text: $data.Status"></label>
                         </td>
-                        <td class="right-aligned">
-                            <label data-bind="text: $data.BillingStartDate"></label>
-                        </td>
+                        
                     </tr>
                     <!-- /ko -->
                 </tbody>
